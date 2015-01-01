@@ -1,12 +1,11 @@
 <?php 
-include_once 'localhost_database.php';
-include_once 'functions.php';
+include_once 'controllers/functions.php';
 ?>
 <!DOCTYPE html>
 <html>
 	<head><title><?php echo get_title() ?></title>
 
-		<link rel='stylesheet' type='text/css' href='style.css'>
+		<link rel='stylesheet' type='text/css' href='styles/style.css'>
 
 
 	</head>
