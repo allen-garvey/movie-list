@@ -1,109 +1,132 @@
-#center{
-	text-align: center;
-	color: black;
-	background: white;
-	position: relative;
-	margin: 0 auto;
-	max-width: 950px;
+/* line 1, ../sass/style.scss */
+body {
+  font-size: 19.2px;
 }
 
-table, tr, td{
-	border:1px solid black;
-	border-collapse: collapse;
-}
-td{
-	padding: 10px;
-	text-align: left;
-	
-}
-tr{
-	
-}
-table{
-	margin-left: auto;
-	margin-right: auto;
+/* line 4, ../sass/style.scss */
+#center {
+  text-align: center;
+  color: black;
+  background: white;
+  margin: 0 auto;
+  max-width: 950px;
 }
 
-button.add_movie{
-	width: 250px;
-	height: 65px;
-	font-size: 20px;
-}
-button.add_movie:hover{
-	background: #a9e9ff;
+/* line 12, ../sass/style.scss */
+table, tr, td, th {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
-button.select{
-	margin: 10px;
-	width: 80px;
-	height: 30px;
-}
-button.select:hover{
-	background: #a9e9ff;
-}
-.disabled_button{
-	margin: 10px;
-	width: 80px;
-	height: 30px;
-}
-.dvd_released{
-	background: #88e884;
-}
-.theater_released{
-	background: #ffe100;
-}
-.unreleased{
-	background: #ff3237;
-}
-div.add_movie_div{
-	position: fixed;
-	left: 400px;
-	top: 100px;
-	height: 200px;
-	width: 500px;
-	border:1px solid black;
-	background: white;
-	text-align: center;
-	padding: 50px;
+/* line 16, ../sass/style.scss */
+td, th {
+  padding: 10px;
+  text-align: left;
 }
 
-/*.edit_button:hover{
-	border:1px solid #a9e9ff;
-}
-.edit_button{
-	border:1px solid black;
-}*/
-#menu{
-	text-align: center;
-	margin: 10px;
-}
-.menu_box{
-	text-align: center;
-	display: inline-block;
-	font-size: 200%;
-	padding: 10px;
-	border:1px solid black;
-	border-collapse: collapse;
-	margin-bottom: 15px;
-}
-.menu_box_selected{
-	text-align: center;
-	display: inline-block;
-	font-size: 200%;
-	padding: 10px;
-	background-color: blue;
-	border:1px solid black;
-	border-collapse: collapse;
-	margin-bottom: 15px;
-}
-a.selected{
-	color: white;
-}
-input{
-	margin: 10px;
+/* line 20, ../sass/style.scss */
+th {
+  font-weight: normal;
 }
 
+/* line 24, ../sass/style.scss */
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* line 29, ../sass/style.scss */
+button.add_movie {
+  width: 250px;
+  height: 65px;
+  font-size: 1.2em;
+}
 
+/* line 34, ../sass/style.scss */
+button:hover {
+  background: #a9e9ff;
+}
 
+/* line 38, ../sass/style.scss */
+button.select {
+  margin: 10px;
+  width: 80px;
+  height: 30px;
+}
 
+/* line 43, ../sass/style.scss */
+button.select:hover {
+  background: #a9e9ff;
+}
+
+/* line 46, ../sass/style.scss */
+.disabled_button {
+  margin: 10px;
+  width: 80px;
+  height: 30px;
+}
+
+/* line 51, ../sass/style.scss */
+.dvd_released {
+  background: #88e884;
+}
+
+/* line 54, ../sass/style.scss */
+.theater_released {
+  background: #ffe100;
+}
+
+/* line 57, ../sass/style.scss */
+.unreleased {
+  background: #ff3237;
+}
+
+/* line 60, ../sass/style.scss */
+div.add_movie_div {
+  position: fixed;
+  left: 400px;
+  top: 100px;
+  height: 200px;
+  width: 500px;
+  border: 1px solid black;
+  background: white;
+  text-align: center;
+  padding: 50px;
+}
+
+/* line 72, ../sass/style.scss */
+nav {
+  text-align: center;
+  margin: 10px;
+}
+
+/* line 76, ../sass/style.scss */
+.menu_box {
+  text-align: center;
+  display: inline-block;
+  font-size: 200%;
+  padding: 10px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+/* line 85, ../sass/style.scss */
+.selected {
+  background-color: blue;
+}
+
+/* line 89, ../sass/style.scss */
+.selected a {
+  color: white;
+}
+
+/* line 92, ../sass/style.scss */
+input {
+  margin: 10px;
+}
+
+/* line 96, ../sass/style.scss */
+.form_control {
+  margin: 45px 0 0 0;
+}

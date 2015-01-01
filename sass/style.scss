@@ -1,24 +1,26 @@
+body{
+	font-size : 19.2px;
+}
 #center{
 	text-align: center;
 	color: black;
 	background: white;
-	position: relative;
 	margin: 0 auto;
 	max-width: 950px;
 }
 
-table, tr, td{
+table, tr, td, th{
 	border:1px solid black;
 	border-collapse: collapse;
 }
-td{
+td, th{
 	padding: 10px;
-	text-align: left;
-	
+	text-align: left;	
 }
-tr{
-	
+th{
+	font-weight: normal;
 }
+
 table{
 	margin-left: auto;
 	margin-right: auto;
@@ -27,9 +29,9 @@ table{
 button.add_movie{
 	width: 250px;
 	height: 65px;
-	font-size: 20px;
+	font-size: 1.2em;
 }
-button.add_movie:hover{
+button:hover{
 	background: #a9e9ff;
 }
 
@@ -67,13 +69,7 @@ div.add_movie_div{
 	padding: 50px;
 }
 
-/*.edit_button:hover{
-	border:1px solid #a9e9ff;
-}
-.edit_button{
-	border:1px solid black;
-}*/
-#menu{
+nav{
 	text-align: center;
 	margin: 10px;
 }
@@ -86,24 +82,20 @@ div.add_movie_div{
 	border-collapse: collapse;
 	margin-bottom: 15px;
 }
-.menu_box_selected{
-	text-align: center;
-	display: inline-block;
-	font-size: 200%;
-	padding: 10px;
+.selected{
 	background-color: blue;
-	border:1px solid black;
-	border-collapse: collapse;
-	margin-bottom: 15px;
+
 }
-a.selected{
+.selected a{
 	color: white;
 }
 input{
 	margin: 10px;
 }
 
-
+.form_control{
+	margin: 45px 0 0 0;
+}
 
 
 
