@@ -18,9 +18,9 @@ $page_controller = new AGED_Page_Controller('Suggestions');
 		<main>
 			<table id='movie_table'>
 				<tr>
-					<th></th><th>Title</th><th>Pre</th><th>Release</th><th>Genre</th>
+					<th></th><th><a href="suggestions.php?sort=title">Title</a></th><th><a href="suggestions.php?sort=pre_rating desc">Pre</a></th><th><a href="suggestions.php?sort=release_date">Release</a></th><th><a href='suggestions.php?sort=genre'>Genre</a></th>
 				</tr>
-				<?php echo get_suggestion_table_rows(); ?>
+				<?php echo get_suggestion_table_rows($page_controller->get_sort_variables()); ?>
 			</table>
 		</main>
 	</div>

@@ -43,7 +43,7 @@ button.add_movie {
 }
 
 /* line 34, ../sass/style.scss */
-button:hover {
+form button:hover {
   background: #a9e9ff;
 }
 

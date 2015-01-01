@@ -19,9 +19,9 @@ $page_controller = new AGED_Page_Controller('Main');
 	<main>
 		<table id='movie_table'>
 			<tr>
-				<th></th><th>Title</th><th>Pre</th><th>Release</th><th></th>
+				<th></th><th><a href="index.php?sort=title">Title</a></th><th><a href="index.php?sort=pre_rating desc">Pre</a></th><th><a href="index.php?sort=release,release_date">Release</a></th><th></th>
 			</tr>
-			<?php echo get_table_contents(); ?>
+			<?php echo get_table_contents($page_controller->get_sort_variables()); ?>
 		</table>
 		<div class="form_control">
 			<form>
