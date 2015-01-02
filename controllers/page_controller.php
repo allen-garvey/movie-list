@@ -7,7 +7,6 @@ abstract class AGED_Page_Controller{
 	protected $default_query_sort_args; //used if there are no sorting variables in get
 	protected $db_query; //db_query that table results come from (minus any ORDER BY statements or ending semicolon)
 	protected $db_manager;
-	protected $query_extra_sort_args; //used to sort query in conjuction with sort variables in get
 	protected $valid_sort_variables_array; //used to determine if sort variables from get are valid
 
 	protected function init_controller(){
@@ -69,8 +68,7 @@ abstract class AGED_Page_Controller{
 	protected function get_query_result($sort_by=null){
 		$sort_by = is_null($sort_by) ? $this->default_query_sort_args : $sort_by;
 		$con = $this->db_manager->get_database_connection_object();
-		//double sorting is slightly inefficient, but requires less code to fix
-		$query_result = pg_query($con, $this->db_query . " ORDER BY $sort_by," . $this->query_extra_sort_args .";") or die(pg_last_error($con)); 
+		$query_result = pg_query($con, $this->db_query . " ORDER BY $sort_by;") or die(pg_last_error($con)); 
 		pg_close($con);
 
 		return $query_result;
@@ -91,7 +89,6 @@ class AGED_Index_Controller extends AGED_Page_Controller
 		$this->init_controller();
 		$this->page_name = 'Main';
 		$this->default_query_sort_args = 'release,release_date,title';
-		$this->query_extra_sort_args = 'title';
 		$this->db_query = "SELECT title, pre_rating, CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN 'theater_released' ELSE 'unreleased' END END AS RELEASE, CASE WHEN dvd_release <= CURRENT_DATE THEN date '" . Movie_List_Constants::$released_movie_dummy_pg_date."' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days. "' DAY ELSE dvd_release END ELSE theater_release END END AS release_date FROM \"Movies\" WHERE date_watched IS NULL AND post_rating IS NULL";
 		$this->valid_sort_variables_array = array('title', 'pre_rating', 'release_date', 'release');
 	}
@@ -122,7 +119,6 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 		$this->init_controller();
 		$this->page_name = 'Suggestions';
 		$this->default_query_sort_args = 'pre_rating desc,title';
-		$this->query_extra_sort_args = 'pre_rating desc, title';
 		$this->db_query = "SELECT title, pre_rating, genre, CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE 'theater_released' END AS RELEASE, CASE WHEN dvd_release <= CURRENT_DATE THEN date '". Movie_List_Constants::$released_movie_dummy_pg_date ."' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days ."' DAY ELSE dvd_release END ELSE theater_release END END AS release_date FROM \"Movies\" WHERE date_watched IS NULL AND post_rating IS NULL AND (dvd_release <= CURRENT_DATE or theater_release <= CURRENT_DATE)";
 		$this->valid_sort_variables_array = array('pre_rating', 'title', 'genre','release_date','release');
 	}
@@ -152,7 +148,6 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 		$this->init_controller();
 		$this->page_name = 'Rated';
 		$this->default_query_sort_args = 'post_rating desc,title';
-		$this->query_extra_sort_args = 'title';
 		$this->db_query = "SELECT title, genre, date_watched, pre_rating, post_rating, post_rating, post_rating - pre_rating AS rating_difference FROM \"Movies\" WHERE post_rating IS NOT NULL";
 		$this->valid_sort_variables_array = array('pre_rating', 'post_rating' , 'title', 'genre','date_watched','rating_difference');
 	}
