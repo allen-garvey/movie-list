@@ -1,0 +1,4 @@
+SELECT title, pre_rating, genre,  
+CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE 'theater_released' END AS RELEASE, 
+CASE WHEN dvd_release <= CURRENT_DATE THEN date '$null_release_date' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '$dvd_lead_time' DAY ELSE dvd_release END ELSE theater_release END END AS release_date 
+FROM \"Movies\" WHERE date_watched IS NULL AND post_rating IS NULL AND (dvd_release <= CURRENT_DATE or theater_release <= CURRENT_DATE) ORDER BY $sort_by, pre_rating desc, title;

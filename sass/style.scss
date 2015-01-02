@@ -48,13 +48,13 @@ button.select:hover{
 	width: 80px;
 	height: 30px;
 }
-.dvd_released{
+.dvd_released, .good{
 	background: #88e884;
 }
-.theater_released{
+.theater_released, .ok{
 	background: #ffe100;
 }
-.unreleased{
+.unreleased, .bad{
 	background: #ff3237;
 }
 div.add_movie_div{

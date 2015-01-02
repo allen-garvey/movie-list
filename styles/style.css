@@ -67,17 +67,17 @@ button.select:hover {
 }
 
 /* line 51, ../sass/style.scss */
-.dvd_released {
+.dvd_released, .good {
   background: #88e884;
 }
 
 /* line 54, ../sass/style.scss */
-.theater_released {
+.theater_released, .ok {
   background: #ffe100;
 }
 
 /* line 57, ../sass/style.scss */
-.unreleased {
+.unreleased, .bad {
   background: #ff3237;
 }
 
