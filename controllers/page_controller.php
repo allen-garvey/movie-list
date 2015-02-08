@@ -22,14 +22,14 @@ abstract class AGED_Page_Controller{
 		$selected_class = array();
 		foreach ($titles as $title) {
 			if($title === $this->page_name){
-				$selected_class[$title] = "selected";
+				$selected_class[$title] = "active";
 			}
 			else{
 				$selected_class[$title] = "";	
 			}
 		}
 
-		return "<header><h1>Movie List</h1><nav><ul><li class='menu_box $selected_class[Main]'><a href='index.php'>Main</a></li><li class='menu_box $selected_class[Suggestions]'><a href='suggestions.php'>Suggestions</a></li><li class='menu_box $selected_class[Rated]'><a href='rated.php'>Rated</a></li></ul></nav></header>";
+		return "<header class='jumbotron'><h1 class='main_title'>Movie List</h1><nav><ul class='nav nav-pills'><li class='$selected_class[Main]'><a href='index.php'>Main</a></li><li class='$selected_class[Suggestions]'><a href='suggestions.php'>Suggestions</a></li><li class='$selected_class[Rated]'><a href='rated.php'>Rated</a></li></ul></nav></header>";
 	}
 
 	public function get_sort_variables(){
@@ -101,7 +101,7 @@ class AGED_Index_Controller extends AGED_Page_Controller
 			$date = $this->db_manager->database_date_format_us($movie['release_date']);
 			$date = ($date === $this->db_manager->database_date_format_us(Movie_List_Constants::$released_movie_dummy_pg_date)) ? '' : $date;
 
-			$rows = $rows . "<tr class='$movie[release]' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$date</td><td><button onclick=\"edit_movie($i)\" class='edit_button' id='edit_button$i'>Edit</button></td></tr>";
+			$rows = $rows . "<tr class='$movie[release]' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$date</td><td><button onclick=\"edit_movie($i)\" class='btn btn-default btn-xs' id='edit_button$i'>Edit</button></td></tr>";
 			$i++;
 		}
 		return $rows;

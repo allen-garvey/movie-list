@@ -10,7 +10,6 @@ $page_controller = new AGED_Index_Controller();
 	</head>
 
 <body>
-<div id='center'>
 	<?php echo $page_controller->get_nav(); ?>
 	<main>
 		<table id='movie_table'>
@@ -23,15 +22,11 @@ $page_controller = new AGED_Index_Controller();
 			</tr>
 			<?php echo $page_controller->get_table_content_rows(); ?>
 		</table>
-		<div class="form_control">
-			<form>
-				<button type="button" onclick="add_movie()" class='add_movie'>Add Movie</button>
-			</form>
-		</div>
+		<form>
+			<button type="button" class='btn btn-lg btn-primary' onclick="add_movie()" class='add_movie'>Add Movie</button>
+		</form>
 	</main>
 
-
-</div>
 
 
 </body></html>
