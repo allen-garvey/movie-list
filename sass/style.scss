@@ -1,6 +1,35 @@
 body{
+	font-family: Times, 'Times New Roman', serif;
 	font-size : 19.2px;
 }
+
+nav li{
+	font-family: 'Blackout-Sunrise', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;	
+	font-size: 1.414em;
+	text-align: center;
+	display: inline-block;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+%title_font_family{
+	font-family: 'Blackout-Midnight', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+h1{
+	@extend %title_font_family;
+	font-size: 3.998em;
+}
+
+.selected{
+	@extend %title_font_family;
+	background-color: #223;
+}
+
+.selected a{
+	color: white;
+}
+
 #center{
 	text-align: center;
 	color: black;
@@ -26,23 +55,19 @@ table{
 	margin-right: auto;
 }
 
+button{
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
 button.add_movie{
 	width: 250px;
 	height: 65px;
 	font-size: 1.2em;
 }
-form button:hover{
+button.add_movie:hover{
 	background: #a9e9ff;
 }
 
-button.select{
-	margin: 10px;
-	width: 80px;
-	height: 30px;
-}
-button.select:hover{
-	background: #a9e9ff;
-}
 .disabled_button{
 	margin: 10px;
 	width: 80px;
@@ -57,38 +82,12 @@ button.select:hover{
 .unreleased, .bad{
 	background: #ff3237;
 }
-div.add_movie_div{
-	position: fixed;
-	left: 400px;
-	top: 100px;
-	height: 200px;
-	width: 500px;
-	border:1px solid black;
-	background: white;
-	text-align: center;
-	padding: 50px;
-}
 
 nav{
 	text-align: center;
 	margin: 10px;
 }
-.menu_box{
-	text-align: center;
-	display: inline-block;
-	font-size: 200%;
-	padding: 10px;
-	border:1px solid black;
-	border-collapse: collapse;
-	margin-bottom: 15px;
-}
-.selected{
-	background-color: blue;
 
-}
-.selected a{
-	color: white;
-}
 input{
 	margin: 10px;
 }

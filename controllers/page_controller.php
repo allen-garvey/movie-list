@@ -19,17 +19,17 @@ abstract class AGED_Page_Controller{
 
 	function get_nav(){
 		$titles = array('Main', 'Suggestions', 'Rated');
-		$titles_and_classes = array();
+		$selected_class = array();
 		foreach ($titles as $title) {
 			if($title === $this->page_name){
-				$titles_and_classes[$title] = "menu_box selected";
+				$selected_class[$title] = "selected";
 			}
 			else{
-				$titles_and_classes[$title] = "menu_box";	
+				$selected_class[$title] = "";	
 			}
 		}
 
-		return "<nav><div class='$titles_and_classes[Main]'><a href='index.php'>Main</a></div><div class='$titles_and_classes[Suggestions]'><a href='suggestions.php'>Suggestions</a></div><div class='$titles_and_classes[Rated]'><a href='rated.php'>Rated</a></div></nav>";
+		return "<header><h1>Movie List</h1><nav><ul><li class='menu_box $selected_class[Main]'><a href='index.php'>Main</a></li><li class='menu_box $selected_class[Suggestions]'><a href='suggestions.php'>Suggestions</a></li><li class='menu_box $selected_class[Rated]'><a href='rated.php'>Rated</a></li></ul></nav></header>";
 	}
 
 	public function get_sort_variables(){

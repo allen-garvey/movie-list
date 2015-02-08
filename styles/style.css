@@ -1,9 +1,40 @@
 /* line 1, ../sass/style.scss */
 body {
+  font-family: Times, 'Times New Roman', serif;
   font-size: 19.2px;
 }
 
-/* line 4, ../sass/style.scss */
+/* line 6, ../sass/style.scss */
+nav li {
+  font-family: 'Blackout-Sunrise', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+  font-size: 1.414em;
+  text-align: center;
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+/* line 15, ../sass/style.scss */
+h1, .selected {
+  font-family: 'Blackout-Midnight', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+/* line 19, ../sass/style.scss */
+h1 {
+  font-size: 3.998em;
+}
+
+/* line 24, ../sass/style.scss */
+.selected {
+  background-color: #223;
+}
+
+/* line 29, ../sass/style.scss */
+.selected a {
+  color: white;
+}
+
+/* line 33, ../sass/style.scss */
 #center {
   text-align: center;
   color: black;
@@ -12,121 +43,80 @@ body {
   max-width: 950px;
 }
 
-/* line 12, ../sass/style.scss */
+/* line 41, ../sass/style.scss */
 table, tr, td, th {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-/* line 16, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 td, th {
   padding: 10px;
   text-align: left;
 }
 
-/* line 20, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 th {
   font-weight: normal;
 }
 
-/* line 24, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 table {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 58, ../sass/style.scss */
+button {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* line 62, ../sass/style.scss */
 button.add_movie {
   width: 250px;
   height: 65px;
   font-size: 1.2em;
 }
 
-/* line 34, ../sass/style.scss */
-form button:hover {
+/* line 67, ../sass/style.scss */
+button.add_movie:hover {
   background: #a9e9ff;
 }
 
-/* line 38, ../sass/style.scss */
-button.select {
-  margin: 10px;
-  width: 80px;
-  height: 30px;
-}
-
-/* line 43, ../sass/style.scss */
-button.select:hover {
-  background: #a9e9ff;
-}
-
-/* line 46, ../sass/style.scss */
+/* line 71, ../sass/style.scss */
 .disabled_button {
   margin: 10px;
   width: 80px;
   height: 30px;
 }
 
-/* line 51, ../sass/style.scss */
+/* line 76, ../sass/style.scss */
 .dvd_released, .good {
   background: #88e884;
 }
 
-/* line 54, ../sass/style.scss */
+/* line 79, ../sass/style.scss */
 .theater_released, .ok {
   background: #ffe100;
 }
 
-/* line 57, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .unreleased, .bad {
   background: #ff3237;
 }
 
-/* line 60, ../sass/style.scss */
-div.add_movie_div {
-  position: fixed;
-  left: 400px;
-  top: 100px;
-  height: 200px;
-  width: 500px;
-  border: 1px solid black;
-  background: white;
-  text-align: center;
-  padding: 50px;
-}
-
-/* line 72, ../sass/style.scss */
+/* line 86, ../sass/style.scss */
 nav {
   text-align: center;
   margin: 10px;
 }
 
-/* line 76, ../sass/style.scss */
-.menu_box {
-  text-align: center;
-  display: inline-block;
-  font-size: 200%;
-  padding: 10px;
-  border: 1px solid black;
-  border-collapse: collapse;
-  margin-bottom: 15px;
-}
-
-/* line 85, ../sass/style.scss */
-.selected {
-  background-color: blue;
-}
-
-/* line 89, ../sass/style.scss */
-.selected a {
-  color: white;
-}
-
-/* line 92, ../sass/style.scss */
+/* line 91, ../sass/style.scss */
 input {
   margin: 10px;
 }
 
-/* line 96, ../sass/style.scss */
+/* line 95, ../sass/style.scss */
 .form_control {
   margin: 45px 0 0 0;
 }
