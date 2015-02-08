@@ -6,7 +6,7 @@ $page_controller = new AGED_Rated_Controller();
 <!DOCTYPE html>
 <html>
 	<head><title><?php echo $page_controller->get_title() ?></title>
-		<link rel='stylesheet' type='text/css' href='styles/style.css'>
+		<?php include('inc/stylesheets.php') ?>
 	</head>
 
 <body>
