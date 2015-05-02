@@ -93,3 +93,9 @@ button {
 input {
   margin: 10px;
 }
+
+/* line 76, ../sass/style.scss */
+form.center {
+  text-align: center;
+  margin: 1em 0;
+}

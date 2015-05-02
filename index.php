@@ -22,11 +22,11 @@ $page_controller = new AGED_Index_Controller();
 			</tr>
 			<?php echo $page_controller->get_table_content_rows(); ?>
 		</table>
-		<form>
+		<form class='center'>
 			<button type="button" class='btn btn-lg btn-primary' onclick="add_movie()" class='add_movie'>Add Movie</button>
 		</form>
 	</main>
 
-
-
+<script type="text/javascript" src='scripts/jquery-2.1.3.min.js'></script>
+<script type="text/javascript" src='scripts/bootstrap.min.js'></script>
 </body></html>
