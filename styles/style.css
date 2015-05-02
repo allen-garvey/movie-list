@@ -1,101 +1,112 @@
-/* line 1, ../sass/style.scss */
+/* line 10, ../sass/style.scss */
 body {
-  font-family: Times, 'Times New Roman', serif;
+  font-family: Times, "Droid Serif", "Times New Roman", serif;
   font-size: 19.2px;
   color: black;
 }
 
-/* line 7, ../sass/style.scss */
+/* line 16, ../sass/style.scss */
 nav li {
-  font-family: 'Blackout-Sunrise', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Blackout-Sunrise", "Ostrichsans-Black", "Helvetica Neue", Helvetica, sans-serif;
   font-size: 1.414em;
   margin-left: 10px;
 }
 
-/* line 13, ../sass/style.scss */
+/* line 22, ../sass/style.scss */
 h1.main_title, .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
-  font-family: 'Blackout-Midnight', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: "Blackout-Midnight", "Ostrichsans-Black", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-/* line 17, ../sass/style.scss */
+/* line 26, ../sass/style.scss */
 h1.main_title {
   font-size: 3.998em;
   margin-left: 10px;
   margin-top: 10px;
 }
 
-/* line 24, ../sass/style.scss */
+/* line 33, ../sass/style.scss */
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
   background-color: #223;
 }
 
-/* line 29, ../sass/style.scss */
+/* line 38, ../sass/style.scss */
 .selected a {
   color: white;
 }
 
-/* line 33, ../sass/style.scss */
+/* line 42, ../sass/style.scss */
 .jumbotron {
   padding-top: .1px;
 }
 
-/* line 36, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 table, tr, td, th {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-/* line 40, ../sass/style.scss */
+/* line 49, ../sass/style.scss */
 td, th {
   padding: 10px;
   text-align: left;
 }
 
-/* line 44, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 th {
   font-weight: normal;
 }
 
-/* line 48, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 table {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 53, ../sass/style.scss */
+/* line 62, ../sass/style.scss */
 button {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 57, ../sass/style.scss */
+/* line 65, ../sass/style.scss */
+label {
+  margin-bottom: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* line 70, ../sass/style.scss */
 .disabled_button {
   margin: 10px;
   width: 80px;
   height: 30px;
 }
 
-/* line 62, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
 .dvd_released, .good {
-  background: #88e884;
+  background-color: #88e884;
 }
 
-/* line 65, ../sass/style.scss */
+/* line 78, ../sass/style.scss */
 .theater_released, .ok {
-  background: #ffe100;
+  background-color: #ffe100;
 }
 
-/* line 68, ../sass/style.scss */
+/* line 81, ../sass/style.scss */
 .unreleased, .bad {
-  background: #ff3237;
+  background-color: #ff3237;
 }
 
-/* line 72, ../sass/style.scss */
-input {
-  margin: 10px;
-}
-
-/* line 76, ../sass/style.scss */
-form.center {
+/* line 85, ../sass/style.scss */
+.center {
   text-align: center;
+}
+
+/* line 88, ../sass/style.scss */
+.add_button {
   margin: 1em 0;
+}
+
+/* line 92, ../sass/style.scss */
+.modal-header {
+  background-color: steelblue;
+  color: white;
 }

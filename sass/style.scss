@@ -1,17 +1,26 @@
+$sans_serif_font_family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$serif_font_family: Times, 'Droid Serif', 'Times New Roman', serif;
+$display_font_family: 'Blackout-Sunrise', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+$title_font_family: 'Blackout-Midnight', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+$green : #88e884;
+$yellow : #ffe100;
+$red : #ff3237;
+$blue : steelblue;
+
 body{
-	font-family: Times, 'Times New Roman', serif;
+	font-family: $serif_font_family;
 	font-size : 19.2px;
 	color: black;
 }
 
 nav li{
-	font-family: 'Blackout-Sunrise', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;	
+	font-family: $display_font_family;
 	font-size: 1.414em;
 	margin-left: 10px;
 }
 
 %title_font_family{
-	font-family: 'Blackout-Midnight', 'Ostrichsans-Black', 'Helvetica Neue', Helvetica, sans-serif;
+	font-family: $title_font_family;
 }
 
 h1.main_title{
@@ -51,7 +60,11 @@ table{
 }
 
 button{
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: $sans_serif_font_family;
+}
+label{
+	margin-bottom: 0;
+	font-family: $sans_serif_font_family;
 }
 
 .disabled_button{
@@ -60,22 +73,25 @@ button{
 	height: 30px;
 }
 .dvd_released, .good{
-	background: #88e884;
+	background-color: $green;
 }
 .theater_released, .ok{
-	background: #ffe100;
+	background-color: $yellow;
 }
 .unreleased, .bad{
-	background: #ff3237;
+	background-color: $red;
 }
 
-input{
-	margin: 10px;
-}
-
-form.center{
+.center{
 	text-align: center;
+}
+.add_button{
 	margin: 1em 0;
+}
+
+.modal-header{
+	background-color: $blue;
+	color : white;
 }
 
 
