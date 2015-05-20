@@ -1,7 +1,14 @@
 <?php 
 include_once('controllers/page_controller.php');
-
+require_once('controllers/localhost_database_pg.php');
 $page_controller = new AGED_Index_Controller();
+
+//get movie genres
+$db_manager = new AGED_PG_Database_Manager;
+$con = $db_manager->get_database_connection_object();
+$movie_genre_result = pg_query($con, 'SELECT genre_id, title FROM m_genre ORDER BY title;') or die(pg_last_error($con)); 
+pg_close($con);
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,33 +44,38 @@ $page_controller = new AGED_Index_Controller();
 			<div class="modal-body">
 				<form>
 					<div class='form-group'>
-						<label for="movie_title" class="control-label">Movie Title:</label>
+						<label for="movie_title" class="control-label">Movie Title</label>
 	            		<input type="text" class="form-control" id="movie_title" placeholder='The Terminator' />
 					</div>
 					<div class='form-group'>
-						<label for="movie_genre" class="control-label">Movie Genre:</label>
-	            		<input type="text" class="form-control" id="movie_genre" placeholder='Action' />
+						<label for="movie_genre" class="control-label">Movie Genre</label>
+	            		<select class="form-control" id="movie_genre">
+	            			<?php 
+	            				while($genre = pg_fetch_array($movie_genre_result)){
+	            					echo "<option value='$genre[genre_id]'>$genre[title]</option>";
+	            				}
+	            			 ?>
+	            		</select>
 					</div>
 					<div class='form-group'>
-						<label for="movie_theater_release" class="control-label">Theater Release Date:</label>
+						<label for="movie_theater_release" class="control-label">Theater Release Date</label>
 	            		<input type="date" class="form-control" id="movie_theater_release" placeholder='01/31/1987' />
 					</div>
 					<div class='form-group'>
-						<label for="movie_dvd_release" class="control-label">DVD Release Date:</label>
+						<label for="movie_dvd_release" class="control-label">DVD Release Date</label>
 	            		<input type="date" class="form-control" id="movie_dvd_release" placeholder='01/31/1992' />
 					</div>
 					<div class='form-group'>
-						<label for="movie_pre_rating" class="control-label">Pre-rating:</label>
+						<label for="movie_pre_rating" class="control-label">Pre-rating</label>
 	            		<input type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' />
 					</div>
 					<div class='form-group hide'>
-						<label for="movie_post_rating" class="control-label">Post-rating:</label>
+						<label for="movie_post_rating" class="control-label">Post-rating</label>
 	            		<input type="number" class="form-control" id="movie_post_rating" placeholder='1-99' min='1' max='100' />
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary">Save</button>
 			 </div>
 		</div>
