@@ -1,6 +1,6 @@
 <?php 
-include_once('localhost_database_pg.php');
-include_once('models/constants.php');
+include_once(ROOT_PATH.'controllers/localhost_database_pg.php');
+include_once(ROOT_PATH.'models/constants.php');
 
 abstract class AGED_Page_Controller{
 	protected $page_name; //used in nav
@@ -17,7 +17,7 @@ abstract class AGED_Page_Controller{
 		return "Allen's Movie List";
 	}
 
-	function get_nav(){
+	function get_nav_items(){
 		$titles = array('Main', 'Suggestions', 'Rated');
 		$selected_class = array();
 		foreach ($titles as $title) {
@@ -29,7 +29,7 @@ abstract class AGED_Page_Controller{
 			}
 		}
 
-		return "<header class='jumbotron'><h1 class='main_title'>Movie List</h1><nav><ul class='nav nav-pills'><li class='$selected_class[Main]'><a href='index.php'>Main</a></li><li class='$selected_class[Suggestions]'><a href='suggestions.php'>Suggestions</a></li><li class='$selected_class[Rated]'><a href='rated.php'>Rated</a></li></ul></nav></header>";
+		return "<li class='$selected_class[Main]'><a href='". HOME_URL . "'>Main</a></li><li class='$selected_class[Suggestions]'><a href='" . SUGGESTIONS_URL. "'>Suggestions</a></li><li class='$selected_class[Rated]'><a href='" . RATED_URL. "'>Rated</a></li>";
 	}
 
 	public function get_sort_variables(){
