@@ -18,9 +18,9 @@ include(ROOT_PATH.'inc/views/head.php');
 		<table id='movie_table'>
 			<tr>
 				<th></th>
-				<th><a href="index.php?sort=title">Title</a></th>
-				<th><a href="index.php?sort=pre_rating desc,title">Pre</a></th>
-				<th><a href="index.php?sort=release,release_date,title">Release</a></th>
+				<th><a href="<?= HOME_URL; ?>?sort=title">Title</a></th>
+				<th><a href="<?= HOME_URL; ?>?sort=pre_rating desc,title">Pre</a></th>
+				<th><a href="<?= HOME_URL; ?>?sort=release,release_date,title">Release</a></th>
 				<th></th>
 			</tr>
 			<?php echo $page_controller->get_table_content_rows(); ?>
