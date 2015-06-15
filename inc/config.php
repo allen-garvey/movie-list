@@ -7,4 +7,7 @@ if(ENVIRONMENT_CURRENT === ENVIRONMENT_LOCAL){
 	define("ROOT_PATH",$_SERVER["DOCUMENT_ROOT"] . "/movie_list_2/");
 }
 
+define('HOME_URL', BASE_URL.'index.php');
+define('RATED_URL', BASE_URL.'rated.php');
+define('SUGGESTIONS_URL', BASE_URL.'suggestions.php');
 
