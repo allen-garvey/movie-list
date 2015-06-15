@@ -10,10 +10,12 @@ $con = $db_manager->get_database_connection_object();
 $movie_genre_result = pg_query($con, 'SELECT genre_id, title FROM m_genre ORDER BY title;') or die(pg_last_error($con)); 
 pg_close($con);
 
-
-include(ROOT_PATH.'inc/views/head.php');
 ?>
-	<?php echo $page_controller->get_nav(); ?>
+
+<?php 
+	include(ROOT_PATH.'inc/views/head.php');
+	include(ROOT_PATH.'inc/views/header.php'); 
+?>
 	<main>
 		<table id='movie_table'>
 			<tr>
