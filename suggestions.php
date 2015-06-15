@@ -1,16 +1,11 @@
-<?php 
-include_once('controllers/page_controller.php');
+<?php
+require_once('inc/config.php');
+require_once(ROOT_PATH.'controllers/page_controller.php');
 
 $page_controller = new AGED_Suggestions_Controller();
+
+include(ROOT_PATH.'inc/views/head.php');
 ?>
-<!DOCTYPE html>
-<html>
-	<head><title><?php echo $page_controller->get_title() ?></title>
-		<?php include('inc/stylesheets.php') ?>
-	</head>
-
-<body>
-
 	<?php echo $page_controller->get_nav(); ?>
 	<main>
 		<table id='movie_table'>
@@ -24,6 +19,4 @@ $page_controller = new AGED_Suggestions_Controller();
 			<?php echo $page_controller->get_table_content_rows(); ?>
 		</table>
 	</main>
-
-
 </body></html>

@@ -1,15 +1,11 @@
 <?php 
-include_once('controllers/page_controller.php');
+require_once('inc/config.php');
+require_once(ROOT_PATH.'controllers/page_controller.php');
 
 $page_controller = new AGED_Rated_Controller();
-?>
-<!DOCTYPE html>
-<html>
-	<head><title><?php echo $page_controller->get_title() ?></title>
-		<?php include('inc/stylesheets.php') ?>
-	</head>
 
-<body>
+include(ROOT_PATH.'inc/views/head.php');
+?>
 	<?php echo $page_controller->get_nav(); ?>
 	<main>
 		<table id='movie_table'>

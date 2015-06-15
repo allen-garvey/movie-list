@@ -1,6 +1,7 @@
 <?php 
-include_once('controllers/page_controller.php');
-require_once('controllers/localhost_database_pg.php');
+require_once('inc/config.php');
+include_once(ROOT_PATH.'controllers/page_controller.php');
+require_once(ROOT_PATH.'controllers/localhost_database_pg.php');
 $page_controller = new AGED_Index_Controller();
 
 //get movie genres
@@ -9,14 +10,9 @@ $con = $db_manager->get_database_connection_object();
 $movie_genre_result = pg_query($con, 'SELECT genre_id, title FROM m_genre ORDER BY title;') or die(pg_last_error($con)); 
 pg_close($con);
 
-?>
-<!DOCTYPE html>
-<html>
-	<head><title><?php echo $page_controller->get_title() ?></title>
-		<?php include('inc/stylesheets.php') ?>
-	</head>
 
-<body>
+include(ROOT_PATH.'inc/views/head.php');
+?>
 	<?php echo $page_controller->get_nav(); ?>
 	<main>
 		<table id='movie_table'>
