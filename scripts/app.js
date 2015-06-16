@@ -28,9 +28,10 @@
 		
 		$scope.isTheaterReleaseValid = true;
 		$scope.isDVDReleaseValid = true;
-		$scope.movie = {'dvd_release' : '',
-						'theater_release' : '', 
-						'movie_genre' : '1'};
+		$scope.movie = {'movie_title' : null,
+						'dvd_release' : null,
+						'theater_release' : null, 
+						'movie_genre' : $('#movie_genre option').first().val()};
 
 		$scope.$watch('movie.theater_release', function(newValue,oldValue) {
 			$scope.isTheaterReleaseValid = (newValue === '') || $scope.isValidDate(newValue);
@@ -45,6 +46,5 @@
 	    	$scope.add_movie_form.$error.required.map(function(item){item.$setDirty();});
 	    	
 	    };
-
 	});
 })();
