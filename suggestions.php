@@ -11,14 +11,18 @@ $page_controller = new AGED_Suggestions_Controller();
 ?>
 <main>
 	<table id='movie_table'>
-		<tr>
-			<th></th>
-			<th><a href="<?= SUGGESTIONS_URL; ?>?sort=title,pre_rating desc">Title</a></th>
-			<th><a href="<?= SUGGESTIONS_URL; ?>?sort=pre_rating desc,title">Pre</a></th>
-			<th><a href="<?= SUGGESTIONS_URL; ?>?sort=release_date,pre_rating desc,title">Release</a></th>
-			<th><a href='<?= SUGGESTIONS_URL; ?>?sort=genre,pre_rating desc,title'>Genre</a></th>
-		</tr>
-		<?php echo $page_controller->get_table_content_rows(); ?>
+		<thead>
+			<tr>
+				<th></th>
+				<th><a href="<?= SUGGESTIONS_URL; ?>?sort=title,pre_rating desc">Title</a></th>
+				<th><a href="<?= SUGGESTIONS_URL; ?>?sort=pre_rating desc,title">Pre</a></th>
+				<th><a href="<?= SUGGESTIONS_URL; ?>?sort=release_date,pre_rating desc,title">Release</a></th>
+				<th><a href='<?= SUGGESTIONS_URL; ?>?sort=genre,pre_rating desc,title'>Genre</a></th>
+			</tr>
+		</thead>
+		<tbody>		
+			<?= $page_controller->get_table_content_rows(); ?>
+		</tbody>
 	</table>
 </main>
 </body></html>

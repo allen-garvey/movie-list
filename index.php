@@ -18,14 +18,18 @@ pg_close($con);
 ?>
 	<main>
 		<table id='movie_table'>
-			<tr>
-				<th></th>
-				<th><a href="<?= HOME_URL; ?>?sort=title">Title</a></th>
-				<th><a href="<?= HOME_URL; ?>?sort=pre_rating desc,title">Pre</a></th>
-				<th><a href="<?= HOME_URL; ?>?sort=release,release_date,title">Release</a></th>
-				<th></th>
-			</tr>
-			<?php echo $page_controller->get_table_content_rows(); ?>
+			<thead>
+				<tr>
+					<th></th>
+					<th><a href="<?= HOME_URL; ?>?sort=title">Title</a></th>
+					<th><a href="<?= HOME_URL; ?>?sort=pre_rating desc,title">Pre</a></th>
+					<th><a href="<?= HOME_URL; ?>?sort=release,release_date,title">Release</a></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<?= $page_controller->get_table_content_rows(); ?>
+			</tbody>
 		</table>
 		<div class='center add_button'>
 			<button type="button" class='btn btn-lg btn-primary' data-backdrop="static" data-toggle="modal" data-target="#add_edit_movie_modal">Add Movie</button>
