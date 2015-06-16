@@ -36,53 +36,7 @@ pg_close($con);
 		</div>
 	</main>
 
-<div class="modal fade" id='add_edit_movie_modal'>
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title">Add Movie</h4>
-			</div>
-			<div class="modal-body">
-				<form>
-					<div class='form-group'>
-						<label for="movie_title" class="control-label">Movie Title</label>
-	            		<input type="text" class="form-control" id="movie_title" placeholder='The Terminator' />
-					</div>
-					<div class='form-group'>
-						<label for="movie_genre" class="control-label">Movie Genre</label>
-	            		<select class="form-control" id="movie_genre">
-	            			<?php 
-	            				while($genre = pg_fetch_array($movie_genre_result)){
-	            					echo "<option value='$genre[genre_id]'>$genre[title]</option>";
-	            				}
-	            			 ?>
-	            		</select>
-					</div>
-					<div class='form-group'>
-						<label for="movie_theater_release" class="control-label">Theater Release Date</label>
-	            		<input type="date" class="form-control" id="movie_theater_release" placeholder='01/31/1987' />
-					</div>
-					<div class='form-group'>
-						<label for="movie_dvd_release" class="control-label">DVD Release Date</label>
-	            		<input type="date" class="form-control" id="movie_dvd_release" placeholder='01/31/1992' />
-					</div>
-					<div class='form-group'>
-						<label for="movie_pre_rating" class="control-label">Pre-rating</label>
-	            		<input type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' />
-					</div>
-					<div class='form-group hide'>
-						<label for="movie_post_rating" class="control-label">Post-rating</label>
-	            		<input type="number" class="form-control" id="movie_post_rating" placeholder='1-99' min='1' max='100' />
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary">Save</button>
-			 </div>
-		</div>
-	</div>
-</div>
+<?php include(VIEWS_PATH.'add_movie_modal.php'); ?>
 
 
 <?php include(VIEWS_PATH.'scripts.php'); ?>
