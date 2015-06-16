@@ -1,6 +1,6 @@
 <?php 
-include_once(ROOT_PATH.'controllers/localhost_database_pg.php');
-include_once(ROOT_PATH.'models/constants.php');
+include_once(CONTROLLERS_PATH.'localhost_database_pg.php');
+include_once(INC_PATH.'constants.php');
 
 abstract class AGED_Page_Controller{
 	protected $page_name; //used in nav
