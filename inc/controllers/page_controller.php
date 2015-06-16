@@ -76,6 +76,10 @@ abstract class AGED_Page_Controller{
 
 	abstract protected function get_rows_from_result($result);
 
+	public function uses_ng(){
+		return false;
+	}
+
 }
 
 
@@ -105,6 +109,10 @@ class AGED_Index_Controller extends AGED_Page_Controller
 			$i++;
 		}
 		return $rows;
+	}
+
+	public function uses_ng(){
+		return true;
 	}
 
 }
