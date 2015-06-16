@@ -1,13 +1,13 @@
 <?php 
 require_once('inc/config.php');
-require_once(ROOT_PATH.'controllers/page_controller.php');
+require_once(CONTROLLERS_PATH.'page_controller.php');
 
 $page_controller = new AGED_Rated_Controller();
 
 ?>
 <?php 
-	include(ROOT_PATH.'inc/views/head.php');
-	include(ROOT_PATH.'inc/views/header.php'); 
+	include(VIEWS_PATH.'head.php');
+	include(VIEWS_PATH.'header.php'); 
 ?>
 <main>
 	<table id='movie_table'>

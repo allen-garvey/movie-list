@@ -1,7 +1,7 @@
 <?php 
 require_once('inc/config.php');
-include_once(ROOT_PATH.'controllers/page_controller.php');
-require_once(ROOT_PATH.'controllers/localhost_database_pg.php');
+include_once(CONTROLLERS_PATH.'page_controller.php');
+require_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 $page_controller = new AGED_Index_Controller();
 
 //get movie genres
@@ -13,8 +13,8 @@ pg_close($con);
 ?>
 
 <?php 
-	include(ROOT_PATH.'inc/views/head.php');
-	include(ROOT_PATH.'inc/views/header.php'); 
+	include(VIEWS_PATH.'head.php');
+	include(VIEWS_PATH.'header.php'); 
 ?>
 	<main>
 		<table id='movie_table'>
@@ -81,6 +81,5 @@ pg_close($con);
 </div>
 
 
-<script type="text/javascript" src='scripts/jquery-2.1.3.min.js'></script>
-<script type="text/javascript" src='scripts/bootstrap.min.js'></script>
+<?php include(VIEWS_PATH.'scripts.php'); ?>
 </body></html>
