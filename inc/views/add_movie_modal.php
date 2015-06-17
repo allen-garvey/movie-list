@@ -9,7 +9,7 @@
 				<form novalidate="novalidate" name="add_movie_form" id="add_movie_form">
 					<div class='form-group' ng-class="{'has-error': add_movie_form.movie_title.$invalid && add_movie_form.movie_title.$dirty}">
 						<label for="movie_title" class="control-label">Movie Title</label>
-	            		<input name="movie_title" type="text" class="form-control" id="movie_title" placeholder='The Terminator' required="required" ng-model="movie.movie_title" />
+	            		<input name="movie_title" type="text" class="form-control" id="movie_title" placeholder='The Terminator' required="required" ng-model="movie.title" />
 					</div>
 					<div class='form-group'>
 						<label for="movie_genre" class="control-label">Movie Genre</label>
@@ -32,7 +32,7 @@
 					</div>
 					<div class='form-group' ng-class="{'has-error': add_movie_form.pre_rating.$invalid && add_movie_form.pre_rating.$dirty}">
 						<label for="movie_pre_rating" class="control-label">Pre-rating</label>
-	            		<input name="pre_rating" type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' required="required" ng-model="movie.pre_rating" />
+	            		<input name="pre_rating" type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' ng-model="movie.pre_rating" />
 					</div>
 					<div class='form-group hide' ng-class="{'has-error': add_movie_form.post_rating.$invalid && add_movie_form.post_rating.$dirty}">
 						<label for="movie_post_rating" class="control-label">Post-rating</label>
@@ -41,6 +41,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
+				<p>{{errorMsg}}</p>
 				<button type="button" class="btn btn-primary" ng-click='addMovieFormAction()'>Save</button>
 			 </div>
 		</div>
