@@ -1,7 +1,7 @@
 (function(){
 	var movieApp = angular.module('movieApp', []);
 
-	movieApp.controller('movieModalCtrl', function($scope){
+	movieApp.controller('movieModalCtrl', function($scope, $http){
 		$scope.isValidDate = function(dateString) {
 		    //mm dd yyyy format
 		    var matches1 = dateString.match(/^(\d{2})[- \/](\d{2})[- \/](\d{4})$/);
@@ -25,25 +25,55 @@
 		        }
 		    return(date);
 		};
-		
+		$scope.formSent = false;
+		$scope.errorMsg = '';
 		$scope.isTheaterReleaseValid = true;
 		$scope.isDVDReleaseValid = true;
-		$scope.movie = {'movie_title' : null,
+		$scope.movie = {'title' : null,
 						'dvd_release' : null,
 						'theater_release' : null, 
-						'movie_genre' : $('#movie_genre option').first().val()};
+						'movie_genre' : $('#movie_genre option').first().val(),
+						'pre_rating' : null
+						};
 
 		$scope.$watch('movie.theater_release', function(newValue,oldValue) {
-			$scope.isTheaterReleaseValid = (newValue === '') || $scope.isValidDate(newValue);
+			$scope.isTheaterReleaseValid = (newValue === null) || $scope.isValidDate(newValue);
 	    });
 
 	    $scope.$watch('movie.dvd_release', function(newValue,oldValue) {
-			$scope.isDVDReleaseValid = (newValue === '') || $scope.isValidDate(newValue);
+			$scope.isDVDReleaseValid = (newValue === null) || $scope.isValidDate(newValue);
 	    });
 
+	    $scope.isFormValid = function(){
+	    	if($('.form-group').hasClass('has-error')){
+	    		return false;
+	    	}
+	    	if(!$scope.movie['title']){
+	    		return false;
+	    	}
+	    	return true;
+	    };
+
 	    $scope.addMovieFormAction = function(){
-	    	console.log('movie added');
-	    	$scope.add_movie_form.$error.required.map(function(item){item.$setDirty();});
+	    	//$scope.add_movie_form.$error.required.map(function(item){item.$setDirty();});
+	    	var lvFormSent = $scope.formSent; //because formSent will be updated asynchronously
+	    	$scope.formSent = true;
+	    	if($scope.isFormValid() && !lvFormSent{
+				$.post('http://localhost/movie_list_2/add_edit_movie.php', {'movie' : angular.toJson($scope.movie)},function(data, status){
+					data = JSON.parse(data);
+					if(data['error']){
+						$scope.errorMsg = data['error'];
+					}
+					else{
+						$('tbody').html(data['table_body']);
+						$('#add_edit_movie_modal').modal('hide');
+					}
+					$scope.formSent = false;
+				});
+	    	}
+	    	else{
+	    		$scope.errorMsg = 'Please fix your input values before trying to send the form.';
+	    	}
 	    	
 	    };
 	});
