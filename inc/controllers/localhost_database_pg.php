@@ -50,6 +50,18 @@ class AGED_PG_Database_Manager{
 		return $result_array;
 	}
 
+	public function movieGenreIds(){
+		$con = $this->get_database_connection_object();
+		$query_result = pg_query($con, "SELECT genre_id FROM m_genre;") or die(pg_last_error($con));
+		pg_close($con);
+		$array = $this->get_array_from_result($query_result);
+		$genre_ids = [];
+		foreach ($array as $value) {
+		 	$genre_ids[] = $value['genre_id'];
+		 } 
+		return $genre_ids;
+	}
+
 
 
 }
