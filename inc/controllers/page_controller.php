@@ -93,7 +93,7 @@ class AGED_Index_Controller extends AGED_Page_Controller
 		$this->init_controller();
 		$this->page_name = 'Main';
 		$this->default_query_sort_args = 'release,release_date,title';
-		$this->db_query = "SELECT title, pre_rating, CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN 'theater_released' ELSE 'unreleased' END END AS RELEASE, CASE WHEN dvd_release <= CURRENT_DATE THEN date '" . Movie_List_Constants::$released_movie_dummy_pg_date."' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days. "' DAY ELSE dvd_release END ELSE theater_release END END AS release_date FROM movies WHERE date_watched IS NULL AND post_rating IS NULL";
+		$this->db_query = "SELECT id, title, pre_rating, CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN 'theater_released' ELSE 'unreleased' END END AS RELEASE, CASE WHEN dvd_release <= CURRENT_DATE THEN date '" . Movie_List_Constants::$released_movie_dummy_pg_date."' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days. "' DAY ELSE dvd_release END ELSE theater_release END END AS release_date FROM movies WHERE date_watched IS NULL AND post_rating IS NULL";
 		$this->valid_sort_variables_array = array('title', 'pre_rating', 'release_date', 'release');
 	}
 
@@ -105,7 +105,7 @@ class AGED_Index_Controller extends AGED_Page_Controller
 			$date = $this->db_manager->database_date_format_us($movie['release_date']);
 			$date = ($date === $this->db_manager->database_date_format_us(Movie_List_Constants::$released_movie_dummy_pg_date)) ? '' : $date;
 
-			$rows = $rows . "<tr class='$movie[release]' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$date</td><td><button onclick=\"edit_movie($i)\" class='btn btn-default btn-xs' id='edit_button$i'>Edit</button></td></tr>";
+			$rows = $rows . "<tr class='$movie[release]' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$date</td><td><button class='btn btn-default btn-xs' ng-click='edit($movie[id])'>Edit</button></td></tr>";
 			$i++;
 		}
 		return $rows;
