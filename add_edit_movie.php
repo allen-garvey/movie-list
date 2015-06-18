@@ -1,7 +1,7 @@
 <?php 
 require_once('inc/config.php');
 
-if($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['movie'])) {
+if($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['movie']) || !isset($_POST['mode'])) {
 	header('Location: ' . HOME_URL );
 	die();
 }
@@ -17,11 +17,17 @@ $prepared_statement_array = [];
 $add_movie_keys = Movie_List_Constants::$add_movie_keys;
 $edit_movie_keys = Movie_List_Constants::$edit_movie_keys;
 $non_null_keys = Movie_List_Constants::$non_null_keys;
-
-$movie_keys = $add_movie_keys;
-
 $add_movie_query = "INSERT into movies (title, genre_id, theater_release, dvd_release, pre_rating) values ($1, $2, $3, $4, $5);";
-$movie_query = $add_movie_query;
+$edit_movie_query = "UPDATE movies set title = $1, genre_id = $2, theater_release = $3, dvd_release = $4, pre_rating = $5, post_rating = $6 where id = $7;";
+if($_POST['mode'] === 'add'){
+	$movie_keys = $add_movie_keys;
+	$movie_query = $add_movie_query;
+}
+else{
+	$movie_keys = $edit_movie_keys;
+	$movie_query = $edit_movie_query;	
+}
+
 
 
 //*******validate data
@@ -29,7 +35,17 @@ $movie_query = $add_movie_query;
 //For everything else, if not set it is okay, but if there's an error, will output error message instead of inserting or updating partly correct data
 
 foreach ($movie_keys as $key) {
-	if(!isset($movie[$key]) && !in_array($key, $non_null_keys)){
+	if(($key === 'theater_release' || $key === 'dvd_release') && !empty($movie[$key])){
+		$date = DateTime::createFromFormat('m/d/Y', $movie[$key]);
+		if(is_object($date)){
+			$prepared_statement_array[$key] = $date->format('Y-m-d');
+		}
+		else{
+			// $errors[] = Movie_List_Constants::error_for_key($key);
+			$errors[] = 'Date format error ' . $key . ' value is ' . $movie[$key];
+		}
+	}
+	elseif(empty($movie[$key]) && !in_array($key, $non_null_keys)){
 		$prepared_statement_array[$key] = null;
 	}
 	else{
