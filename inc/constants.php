@@ -21,6 +21,7 @@ class Movie_List_Constants
 	public static $rating_error;
 	public static $pre_rating_error;
 	public static $post_rating_error;
+	public static $movie_id_error = "You haven't supplied a valid movie id.";
 	
 
 	public static $date_error = 'Please enter a valid date';
@@ -41,7 +42,7 @@ class Movie_List_Constants
 		self::$theater_release_error = self::$date_error . ' for theater release date.';
 
 		self::$add_movie_keys = ['title', 'movie_genre', 'theater_release', 'dvd_release', 'pre_rating'];
-		self::$edit_movie_keys = ['movie_id','title', 'pre_rating', 'movie_genre', 'theater_release', 'dvd_release', 'post_rating'];
+		self::$edit_movie_keys = ['title', 'movie_genre', 'theater_release', 'dvd_release', 'pre_rating', 'post_rating', 'movie_id'];
 		self::$non_null_keys = ['title', 'movie_id'];
 	}
 
@@ -65,6 +66,9 @@ class Movie_List_Constants
 				break;
 			case 'movie_genre':
 				return self::$genre_error;
+				break;
+			case 'movie_id':
+				return self::$movie_id_error;
 				break;
 			default:
 				return "An undetermined error (you have entered an invalid key to get the error for).";
