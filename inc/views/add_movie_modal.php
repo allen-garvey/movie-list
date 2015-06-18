@@ -1,4 +1,4 @@
-<div class="modal fade" id='add_edit_movie_modal' ng-controller="movieModalCtrl">
+<div class="modal fade" id='add_edit_movie_modal'>
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -34,7 +34,7 @@
 						<label for="movie_pre_rating" class="control-label">Pre-rating</label>
 	            		<input name="pre_rating" type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' ng-model="movie.pre_rating" />
 					</div>
-					<div class='form-group hide' ng-class="{'has-error': add_movie_form.post_rating.$invalid && add_movie_form.post_rating.$dirty}">
+					<div class='form-group' ng-show="mode==='edit'" ng-class="{'has-error': add_movie_form.post_rating.$invalid && add_movie_form.post_rating.$dirty}">
 						<label for="movie_post_rating" class="control-label">Post-rating</label>
 	            		<input name="post_rating" type="number" class="form-control" id="movie_post_rating" placeholder='1-99' min='1' max='100'ng-model="movie.post_rating" />
 					</div>
@@ -42,7 +42,7 @@
 			</div>
 			<div class="modal-footer">
 				<p>{{errorMsg}}</p>
-				<button type="button" class="btn btn-primary" ng-click='addMovieFormAction()'>Save</button>
+				<button type="button" class="btn btn-primary" ng-click='modalAction()'>Save</button>
 			 </div>
 		</div>
 	</div>
