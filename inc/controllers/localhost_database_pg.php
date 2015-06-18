@@ -44,7 +44,7 @@ class AGED_PG_Database_Manager{
 
 	public function get_array_from_result($result){
 		$result_array = array();
-		while($info = pg_fetch_array($result)){
+		while($info = pg_fetch_array($result, null, PGSQL_ASSOC)){
 			$result_array[] = $info;
 		}
 		return $result_array;
