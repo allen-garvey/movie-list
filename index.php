@@ -16,7 +16,7 @@ pg_close($con);
 	include(VIEWS_PATH.'head.php');
 	include(VIEWS_PATH.'header.php'); 
 ?>
-	<main>
+	<main ng-controller="movieModalCtrl">
 		<table id='movie_table'>
 			<thead>
 				<tr>
@@ -32,11 +32,10 @@ pg_close($con);
 			</tbody>
 		</table>
 		<div class='center add_button'>
-			<button type="button" class='btn btn-lg btn-primary' data-backdrop="static" data-toggle="modal" data-target="#add_edit_movie_modal">Add Movie</button>
+			<button type="button" class='btn btn-lg btn-primary' ng-click="showModal('add')">Add Movie</button>
 		</div>
+		<?php include(VIEWS_PATH.'add_movie_modal.php'); ?>
 	</main>
-
-<?php include(VIEWS_PATH.'add_movie_modal.php'); ?>
 
 
 <?php include(VIEWS_PATH.'scripts.php'); ?>
