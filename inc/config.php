@@ -5,6 +5,7 @@ define("ENVIRONMENT_CURRENT", ENVIRONMENT_LOCAL);
 if(ENVIRONMENT_CURRENT === ENVIRONMENT_LOCAL){
 	define("BASE_URL","/movie_list_2/");
 	define("ROOT_PATH",$_SERVER["DOCUMENT_ROOT"] . "/movie_list_2/");
+	define("SUPER_SEARCH_URL", 'http://localhost/super-search/index.php?q=');
 }
 
 define('HOME_URL', BASE_URL.'index.php');
