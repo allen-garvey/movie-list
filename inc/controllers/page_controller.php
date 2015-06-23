@@ -105,7 +105,7 @@ class AGED_Index_Controller extends AGED_Page_Controller
 			$date = $this->db_manager->database_date_format_us($movie['release_date']);
 			$date = ($date === $this->db_manager->database_date_format_us(Movie_List_Constants::$released_movie_dummy_pg_date)) ? '' : $date;
 
-			$rows = $rows . "<tr class='$movie[release]' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$date</td><td><button class='btn btn-default btn-xs' ng-click='edit($movie[id])'>Edit</button></td></tr>";
+			$rows = $rows . "<tr class='$movie[release]' id='row$i'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$date</td><td><button class='btn btn-default btn-xs' ng-click='edit($movie[id])'>Edit</button></td></tr>";
 			$i++;
 		}
 		return $rows;
@@ -138,7 +138,7 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 		while($movie = pg_fetch_array($released_unwatched_result)){
 			$type = $movie['release'];
 			$release_date = ($type === 'theater_released') ? $this->db_manager->database_date_format_us($movie['release_date']) : '';
-			$rows = $rows . "<tr class='$type' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$release_date</td><td>$movie[genre]</td></tr>";
+			$rows = $rows . "<tr class='$type' id='row$i'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$release_date</td><td>$movie[genre]</td></tr>";
 			$i++;
 		}
 		return $rows;
@@ -175,7 +175,7 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 			else{
 				$class = 'bad';
 			}
-			$rows = $rows . "<tr class='$class' id='row$i'><td>$i</td><td>$movie[title]</td><td>$movie[pre_rating]</td><td>$movie[post_rating]</td><td>$movie[rating_difference]</td><td>$movie[genre]</td><td>$date</td></tr>";
+			$rows = $rows . "<tr class='$class' id='row$i'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$movie[post_rating]</td><td>$movie[rating_difference]</td><td>$movie[genre]</td><td>$date</td></tr>";
 			$i++;
 		}
 		return $rows;
