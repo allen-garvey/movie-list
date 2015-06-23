@@ -2,8 +2,12 @@
 //get info about movie for editing purposes
 require_once('inc/config.php');
 
-if($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['movie'])) {
+if($_SERVER['REQUEST_METHOD'] != 'POST'){
 	header('Location: ' . HOME_URL );
+	die();
+}
+if(!isset($_POST['movie'])){
+	echo json_encode(['error' => 'You have not sent a movie']);
 	die();
 }
 $movie = json_decode($_POST['movie'], true);
