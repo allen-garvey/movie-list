@@ -110,3 +110,13 @@ label {
   background-color: steelblue;
   color: white;
 }
+
+/* line 96, ../sass/style.scss */
+.modal-footer p {
+  text-align: left;
+}
+
+/* line 100, ../sass/style.scss */
+td a {
+  color: black;
+}
