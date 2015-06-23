@@ -87,6 +87,7 @@
 				if(data['error']){
 					$scope.errorMsg = data['error'];
 					$scope.$apply();
+					console.log(data['error']);
 				}
 				else{
 					$scope.movie = data['movie'];
@@ -139,8 +140,9 @@
 						$scope.errorMsg = data['error'];
 					}
 					else{
-						$('tbody').html(data['table_body']);
-						$('#add_edit_movie_modal').modal('hide');
+						location.reload(true); //because ajax refreshing the table has problems with registering ng-click
+						// $('tbody').html(data['table_body']);
+						// $('#add_edit_movie_modal').modal('hide');
 					}
 					$scope.formSent = false;
 				});
