@@ -148,7 +148,13 @@
 				});
 	    	}
 	    	else{
-	    		$scope.errorMsg = 'Please fix your input values before trying to send the form.';
+	    		if(lvFormSent){
+	    			$scope.errorMsg = 'Please wait. The form has already been sent.';
+	    		}
+	    		else{
+	    			$scope.errorMsg = 'Please fix your input values before trying to send the form.';	
+	    		}
+	    		
 	    	}
 	    	
 	    };
