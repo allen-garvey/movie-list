@@ -19,7 +19,7 @@ $edit_movie_keys = Movie_List_Constants::$edit_movie_keys;
 $non_null_keys = Movie_List_Constants::$non_null_keys;
 $add_movie_query = "INSERT into movies (title, genre_id, theater_release, dvd_release, pre_rating) values ($1, $2, $3, $4, $5);";
 $edit_movie_query = "UPDATE movies set title = $1, genre_id = $2, theater_release = $3, dvd_release = $4, pre_rating = $5, post_rating = $6 where id = $7;";
-if($_POST['mode'] === 'add'){
+if(json_decode($_POST['mode']) === 'add'){
 	$movie_keys = $add_movie_keys;
 	$movie_query = $add_movie_query;
 }
