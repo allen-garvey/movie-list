@@ -147,17 +147,15 @@
     		movie.movie_id = this.movie.movie_id;
     	}
     	console.log(movie);
-    	// return;
     	var self = this;
     	if(app.isFormValid(movie)){
 			$.post('http://localhost/movie_list_2/add_edit_movie.php', {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
 				if(data['error']){
 					$('#modal_errors').text(data['error']);
+					return;
 				}
-				else{
-					$('tbody').html(data['table_body']);
-					$('#add_edit_movie_modal').modal('hide');
-				}
+				$('tbody').html(data['table_body']);
+				$('#add_edit_movie_modal').modal('hide');
 			});
     	}
     	else{
