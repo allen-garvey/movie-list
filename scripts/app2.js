@@ -143,6 +143,9 @@
 	app.saveMovie = function(){
     	var movie = app.serializeForm($('#movie_form'));
     	movie = app.normalizeBlankValues(movie);
+    	if(this.mode === 'edit'){
+    		movie.movie_id = this.movie.movie_id;
+    	}
     	console.log(movie);
     	// return;
     	var self = this;
@@ -155,7 +158,6 @@
 					$('tbody').html(data['table_body']);
 					$('#add_edit_movie_modal').modal('hide');
 				}
-				$scope.formSent = false;
 			});
     	}
     	else{
