@@ -107,10 +107,12 @@ td a{
 	background-color: $blue;
 	color : white;
 }
-.modal-footer p{
-	text-align: left;
+.modal-footer{
+	border-top: none;
+	p{
+		text-align: left;
+	}
 }
-
 
 .add .hide-for-add{
 	display: none;
