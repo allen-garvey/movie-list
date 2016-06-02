@@ -17,54 +17,54 @@ h1.main_title, .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
   font-family: "Blackout-Midnight", "Ostrichsans-Black", "Helvetica Neue", Helvetica, sans-serif;
 }
 
-/* line 26, ../sass/style.scss */
+/* line 25, ../sass/style.scss */
+h1, h2, h3, h4, button {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* line 29, ../sass/style.scss */
 h1.main_title {
   font-size: 3.998em;
   margin-left: 10px;
   margin-top: 10px;
 }
 
-/* line 33, ../sass/style.scss */
+/* line 36, ../sass/style.scss */
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover {
   background-color: #223;
 }
 
-/* line 38, ../sass/style.scss */
+/* line 41, ../sass/style.scss */
 .selected a {
   color: white;
 }
 
-/* line 42, ../sass/style.scss */
+/* line 45, ../sass/style.scss */
 .jumbotron {
   padding-top: .1px;
 }
 
-/* line 45, ../sass/style.scss */
+/* line 48, ../sass/style.scss */
 table, tr, td, th {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-/* line 49, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 td, th {
   padding: 10px;
   text-align: left;
 }
 
-/* line 53, ../sass/style.scss */
+/* line 56, ../sass/style.scss */
 th {
   font-weight: normal;
 }
 
-/* line 57, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 table {
   margin-left: auto;
   margin-right: auto;
-}
-
-/* line 62, ../sass/style.scss */
-button {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* line 65, ../sass/style.scss */
@@ -73,50 +73,69 @@ label {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-/* line 70, ../sass/style.scss */
+/*
+* Table styles
+*/
+/* line 73, ../sass/style.scss */
+.dvd_released, .good {
+  background-color: #88e884;
+}
+
+/* line 76, ../sass/style.scss */
+.theater_released, .ok {
+  background-color: #ffe100;
+}
+
+/* line 79, ../sass/style.scss */
+.unreleased, .bad {
+  background-color: #ff3237;
+}
+
+/* line 83, ../sass/style.scss */
+td a {
+  color: black;
+}
+
+/* line 87, ../sass/style.scss */
+.center {
+  text-align: center;
+}
+
+/*
+* Index styles
+*/
+/* line 94, ../sass/style.scss */
+.add_button {
+  margin: 1em 0;
+}
+
+/* line 97, ../sass/style.scss */
 .disabled_button {
   margin: 10px;
   width: 80px;
   height: 30px;
 }
 
-/* line 75, ../sass/style.scss */
-.dvd_released, .good {
-  background-color: #88e884;
-}
-
-/* line 78, ../sass/style.scss */
-.theater_released, .ok {
-  background-color: #ffe100;
-}
-
-/* line 81, ../sass/style.scss */
-.unreleased, .bad {
-  background-color: #ff3237;
-}
-
-/* line 85, ../sass/style.scss */
-.center {
-  text-align: center;
-}
-
-/* line 88, ../sass/style.scss */
-.add_button {
-  margin: 1em 0;
-}
-
-/* line 92, ../sass/style.scss */
+/*
+* Modal Styles
+*/
+/* line 106, ../sass/style.scss */
 .modal-header {
   background-color: steelblue;
   color: white;
 }
 
-/* line 96, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .modal-footer p {
   text-align: left;
 }
 
-/* line 100, ../sass/style.scss */
-td a {
-  color: black;
+/* line 115, ../sass/style.scss */
+.add .hide-for-add {
+  display: none;
+}
+
+/* line 118, ../sass/style.scss */
+.edit .hide-for-edit {
+  display: none;
 }

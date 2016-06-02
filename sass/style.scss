@@ -22,6 +22,9 @@ nav li{
 %title_font_family{
 	font-family: $title_font_family;
 }
+h1,h2,h3,h4,button{
+	font-family: $sans_serif_font_family;
+}
 
 h1.main_title{
 	@extend %title_font_family;
@@ -59,19 +62,14 @@ table{
 	margin-right: auto;
 }
 
-button{
-	font-family: $sans_serif_font_family;
-}
 label{
 	margin-bottom: 0;
 	font-family: $sans_serif_font_family;
 }
 
-.disabled_button{
-	margin: 10px;
-	width: 80px;
-	height: 30px;
-}
+/*
+* Table styles
+*/
 .dvd_released, .good{
 	background-color: $green;
 }
@@ -82,13 +80,29 @@ label{
 	background-color: $red;
 }
 
+td a{
+	color: black;
+}
+
 .center{
 	text-align: center;
 }
+
+/*
+* Index styles
+*/
 .add_button{
 	margin: 1em 0;
 }
+.disabled_button{
+	margin: 10px;
+	width: 80px;
+	height: 30px;
+}
 
+/*
+* Modal Styles
+*/
 .modal-header{
 	background-color: $blue;
 	color : white;
@@ -97,13 +111,12 @@ label{
 	text-align: left;
 }
 
-td a{
-	color: black;
-}
 
 .add .hide-for-add{
 	display: none;
 }
-
+.edit .hide-for-edit{
+	display: none;
+}
 
 
