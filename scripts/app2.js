@@ -57,14 +57,10 @@
 
 	app.resetForAdd = function(){
 		$('#add_edit_movie_modal').removeClass('edit').addClass('add');
-    	var movie = {'title' : null,
-					'dvd_release' : null,
-					'theater_release' : null, 
-					'movie_genre' : $('#movie_genre').find('option').first().val(),
-					'pre_rating' : null
-					};
+    	var movie_defaults = { 'movie_genre' : $('#movie_genre').find('option').first().val() };
 		$.each(this.movieFields(), function(index, el) {
-    		$(el.selector).val(movie[el.key]);
+    		var value = movie_defaults[el.key] ? movie_defaults[el.key] : null;
+    		$(el.selector).val(value);
     	});
 		this.mode = 'add';
     };
