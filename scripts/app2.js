@@ -119,7 +119,49 @@
 		});
 	};
 
-
+	app.isFormValid = function(movie){
+    	if($('#movie_form .form-group').hasClass('has-error')){
+    		return false;
+    	}
+    	if(movie.title === ''){
+    		return false;
+    	}
+    	return true;
+    };
+    app.serializeForm = function($form){
+    	return $form.serializeArray().reduce(function(object, current, index){ object[current.name] = current.value; return object; }, {});
+    };
+    //turns blank values in object to null for database
+    app.normalizeBlankValues = function(obj){
+    	for(var key in obj){
+    		if(obj[key] === ''){
+    			obj[key] = null;
+    		}
+    	}
+    	return obj;
+    };
+	app.saveMovie = function(){
+    	var movie = app.serializeForm($('#movie_form'));
+    	movie = app.normalizeBlankValues(movie);
+    	console.log(movie);
+    	// return;
+    	var self = this;
+    	if(app.isFormValid(movie)){
+			$.post('http://localhost/movie_list_2/add_edit_movie.php', {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
+				if(data['error']){
+					$('#modal_errors').text(data['error']);
+				}
+				else{
+					$('tbody').html(data['table_body']);
+					$('#add_edit_movie_modal').modal('hide');
+				}
+				$scope.formSent = false;
+			});
+    	}
+    	else{
+    		$('#modal_errors').text('Please fix your input values before trying to send the form.');
+    	}
+    };
 
 	//add listeners
 	$('#movie_table').on('click', '.edit-button', function(event) {
@@ -132,7 +174,10 @@
 		event.preventDefault();
 		app.showModal();
 	});
-
+	$('#movie_form').on('submit', function(event) {
+		event.preventDefault();
+		app.saveMovie();
+	});
 
 
 })(jQuery);
