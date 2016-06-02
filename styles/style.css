@@ -126,16 +126,20 @@ td a {
 }
 
 /* line 110, ../sass/style.scss */
+.modal-footer {
+  border-top: none;
+}
+/* line 112, ../sass/style.scss */
 .modal-footer p {
   text-align: left;
 }
 
-/* line 115, ../sass/style.scss */
+/* line 117, ../sass/style.scss */
 .add .hide-for-add {
   display: none;
 }
 
-/* line 118, ../sass/style.scss */
+/* line 120, ../sass/style.scss */
 .edit .hide-for-edit {
   display: none;
 }
