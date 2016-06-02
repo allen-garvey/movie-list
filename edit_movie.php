@@ -6,6 +6,8 @@ if($_SERVER['REQUEST_METHOD'] != 'POST'){
 	header('Location: ' . HOME_URL );
 	die();
 }
+header('Content-Type: application/json');
+
 if(!isset($_POST['movie'])){
 	echo json_encode(['error' => 'You have not sent a movie']);
 	die();
@@ -27,6 +29,7 @@ $result = pg_execute($con, "add_edit_movie_query", [$movie_id]);
 pg_close($con);
 
 $movie_array = $db_manager->get_array_from_result($result);
+
 echo json_encode(['movie' => $movie_array[0]]);
 
 die();
