@@ -6,10 +6,10 @@
 				<h4 class="modal-title"><span class="hide-for-edit">Add</span><span class="hide-for-add">Edit</span> Movie</h4>
 			</div>
 			<div class="modal-body">
-				<form novalidate="novalidate" name="add_movie_form" id="movie_form">
+				<form name="add_movie_form" id="movie_form">
 					<div class='form-group' ng-class="{'has-error': add_movie_form.movie_title.$invalid && add_movie_form.movie_title.$dirty}">
 						<label for="movie_title" class="control-label">Movie Title</label>
-	            		<input name="movie_title" type="text" class="form-control" id="movie_title" placeholder='The Terminator' required="required" ng-model="movie.title" />
+	            		<input name="title" type="text" class="form-control" id="movie_title" placeholder='The Terminator' required="required" ng-model="movie.title" />
 					</div>
 					<div class='form-group'>
 						<label for="movie_genre" class="control-label">Movie Genre</label>
@@ -23,27 +23,27 @@
 					</div>
 					<!-- && add_movie_form.theater_release.$dirty -->
 					<div class='form-group' ng-class="{'has-error':!isTheaterReleaseValid && add_movie_form.theater_release.$dirty }">
-						<label for="movie_theater_release" class="control-label">Theater Release Date</label>
+						<label for="theater_release" class="control-label">Theater Release Date</label>
 	            		<input name="theater_release" type="text" class="form-control" id="movie_theater_release" placeholder='01/31/1987' ng-model="movie.theater_release" ng-change="validateTheaterDate()" />
 					</div>
 					<div class='form-group' ng-class="{'has-error':!isDVDReleaseValid && add_movie_form.dvd_release.$dirty }">
-						<label for="movie_dvd_release" class="control-label">DVD Release Date</label>
+						<label for="dvd_release" class="control-label">DVD Release Date</label>
 	            		<input name="dvd_release" type="text" class="form-control" id="movie_dvd_release" placeholder='01/31/1992' ng-model="movie.dvd_release" />
 					</div>
 					<div class='form-group' ng-class="{'has-error': add_movie_form.pre_rating.$invalid && add_movie_form.pre_rating.$dirty}">
-						<label for="movie_pre_rating" class="control-label">Pre-rating</label>
+						<label for="pre_rating" class="control-label">Pre-rating</label>
 	            		<input name="pre_rating" type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' ng-model="movie.pre_rating" />
 					</div>
 					<div class='form-group hide-for-add' ng-show="mode==='edit'" ng-class="{'has-error': add_movie_form.post_rating.$invalid && add_movie_form.post_rating.$dirty}">
-						<label for="movie_post_rating" class="control-label">Post-rating</label>
+						<label for="post_rating" class="control-label">Post-rating</label>
 	            		<input name="post_rating" type="number" class="form-control" id="movie_post_rating" placeholder='1-99' min='1' max='100'ng-model="movie.post_rating" />
+					</div>
+					<div class="modal-footer">
+						<p id="modal_errors">{{errorMsg}}</p>
+						<button type="submit" class="btn btn-primary" ng-click='modalAction()'>Save</button>
 					</div>
 				</form>
 			</div>
-			<div class="modal-footer">
-				<p id="modal_errors">{{errorMsg}}</p>
-				<button type="button" class="btn btn-primary" ng-click='modalAction()'>Save</button>
-			 </div>
 		</div>
 	</div>
 </div>
