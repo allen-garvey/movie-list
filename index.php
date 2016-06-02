@@ -32,7 +32,7 @@ pg_close($con);
 			</tbody>
 		</table>
 		<div class='center add_button'>
-			<button type="button" class='btn btn-lg btn-primary' ng-click="showModal('add')">Add Movie</button>
+			<button type="button" class='btn btn-lg btn-primary' id="add-movie-button" ng-click="showModal('add')">Add Movie</button>
 		</div>
 		<?php include(VIEWS_PATH.'add_movie_modal.php'); ?>
 	</main>
