@@ -120,7 +120,7 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 		$this->init_controller();
 		$this->page_name = 'Suggestions';
 		$this->default_query_sort_args = 'pre_rating desc,title';
-		$this->db_query = "SELECT movies.title, movies.pre_rating, m_genre.title as genre, CASE WHEN movies.dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE 'theater_released' END AS RELEASE, CASE WHEN movies.dvd_release <= CURRENT_DATE THEN date '". Movie_List_Constants::$released_movie_dummy_pg_date ."' ELSE CASE WHEN movies.theater_release <= CURRENT_DATE THEN CASE WHEN movies.dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days ."' DAY ELSE movies.dvd_release END ELSE movies.theater_release END END AS release_date FROM movies INNER JOIN m_genre ON movies.genre_id = m_genre.genre_id WHERE movies.date_watched IS NULL AND movies.post_rating IS NULL AND (movies.dvd_release <= CURRENT_DATE or movies.theater_release <= CURRENT_DATE)";
+		$this->db_query = "SELECT movies.id, movies.title, movies.pre_rating, m_genre.title as genre, CASE WHEN movies.dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE 'theater_released' END AS RELEASE, CASE WHEN movies.dvd_release <= CURRENT_DATE THEN date '". Movie_List_Constants::$released_movie_dummy_pg_date ."' ELSE CASE WHEN movies.theater_release <= CURRENT_DATE THEN CASE WHEN movies.dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days ."' DAY ELSE movies.dvd_release END ELSE movies.theater_release END END AS release_date FROM movies INNER JOIN m_genre ON movies.genre_id = m_genre.genre_id WHERE movies.date_watched IS NULL AND movies.post_rating IS NULL AND (movies.dvd_release <= CURRENT_DATE or movies.theater_release <= CURRENT_DATE)";
 		$this->valid_sort_variables_array = array('pre_rating', 'title', 'genre','release_date','release');
 	}
 
@@ -149,7 +149,7 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 		$this->init_controller();
 		$this->page_name = 'Rated';
 		$this->default_query_sort_args = 'post_rating desc,title';
-		$this->db_query = "SELECT movies.title, m_genre.title as genre, movies.date_watched, movies.pre_rating, movies.post_rating, movies.post_rating, movies.post_rating - movies.pre_rating AS rating_difference FROM movies INNER JOIN m_genre ON movies.genre_id = m_genre.genre_id WHERE movies.post_rating IS NOT NULL";
+		$this->db_query = "SELECT movies.id, movies.title, m_genre.title as genre, movies.date_watched, movies.pre_rating, movies.post_rating, movies.post_rating, movies.post_rating - movies.pre_rating AS rating_difference FROM movies INNER JOIN m_genre ON movies.genre_id = m_genre.genre_id WHERE movies.post_rating IS NOT NULL";
 		$this->valid_sort_variables_array = array('pre_rating', 'post_rating' , 'title', 'genre','date_watched','rating_difference');
 	}
 
