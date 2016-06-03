@@ -45,29 +45,29 @@ h1.main_title {
 }
 
 /* line 48, ../sass/style.scss */
-table, tr, td, th {
+table, tr {
   border: 1px solid black;
   border-collapse: collapse;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 53, ../sass/style.scss */
 td, th {
-  padding: 10px;
+  padding: 0.8em;
   text-align: left;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 th {
   font-weight: normal;
 }
 
-/* line 60, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 table {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* line 65, ../sass/style.scss */
+/* line 66, ../sass/style.scss */
 label {
   margin-bottom: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -76,27 +76,27 @@ label {
 /*
 * Table styles
 */
-/* line 73, ../sass/style.scss */
+/* line 74, ../sass/style.scss */
 .dvd_released, .good {
   background-color: #88e884;
 }
 
-/* line 76, ../sass/style.scss */
+/* line 77, ../sass/style.scss */
 .theater_released, .ok {
   background-color: #ffe100;
 }
 
-/* line 79, ../sass/style.scss */
+/* line 80, ../sass/style.scss */
 .unreleased, .bad {
   background-color: #ff3237;
 }
 
-/* line 83, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 td a {
   color: black;
 }
 
-/* line 87, ../sass/style.scss */
+/* line 88, ../sass/style.scss */
 .center {
   text-align: center;
 }
@@ -104,12 +104,12 @@ td a {
 /*
 * Index styles
 */
-/* line 94, ../sass/style.scss */
+/* line 95, ../sass/style.scss */
 .add_button {
   margin: 1em 0;
 }
 
-/* line 97, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 .disabled_button {
   margin: 10px;
   width: 80px;
@@ -119,27 +119,27 @@ td a {
 /*
 * Modal Styles
 */
-/* line 106, ../sass/style.scss */
+/* line 107, ../sass/style.scss */
 .modal-header {
   background-color: steelblue;
   color: white;
 }
 
-/* line 110, ../sass/style.scss */
+/* line 111, ../sass/style.scss */
 .modal-footer {
   border-top: none;
 }
-/* line 112, ../sass/style.scss */
+/* line 113, ../sass/style.scss */
 .modal-footer p {
   text-align: left;
 }
 
-/* line 117, ../sass/style.scss */
+/* line 118, ../sass/style.scss */
 .add .hide-for-add {
   display: none;
 }
 
-/* line 120, ../sass/style.scss */
+/* line 121, ../sass/style.scss */
 .edit .hide-for-edit {
   display: none;
 }

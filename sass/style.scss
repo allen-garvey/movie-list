@@ -45,12 +45,13 @@ h1.main_title{
 .jumbotron{
 	padding-top:.1px; //otherwise won't extend to top of screen for some reason
 }
-table, tr, td, th{
+table, tr{
 	border:1px solid black;
 	border-collapse: collapse;
 }
+
 td, th{
-	padding: 10px;
+	padding: 0.8em;
 	text-align: left;	
 }
 th{
