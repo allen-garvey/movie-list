@@ -76,9 +76,6 @@ abstract class AGED_Page_Controller{
 
 	abstract protected function get_rows_from_result($result);
 
-	public function uses_ng(){
-		return false;
-	}
 
 }
 
@@ -105,14 +102,10 @@ class AGED_Index_Controller extends AGED_Page_Controller
 			$date = $this->db_manager->database_date_format_us($movie['release_date']);
 			$date = ($date === $this->db_manager->database_date_format_us(Movie_List_Constants::$released_movie_dummy_pg_date)) ? '' : $date;
 
-			$rows = $rows . "<tr class='$movie[release]' data-id='$movie[id]'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$date</td><td><button class='btn btn-default btn-xs edit-button' ng-click='edit($movie[id])'>Edit</button></td></tr>";
+			$rows = $rows . "<tr class='$movie[release]' data-id='$movie[id]'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$date</td><td><button class='btn btn-default btn-xs edit-button'>Edit</button></td></tr>";
 			$i++;
 		}
 		return $rows;
-	}
-
-	public function uses_ng(){
-		return true;
 	}
 
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <?php if($page_controller->uses_ng()){echo "ng-app='movieApp'";} ?>>
+<html>
 	<head>
 		<title><?php echo $page_controller->get_title() ?></title>
 		<link rel='stylesheet' type='text/css' href='styles/bootstrap.min.css'/>
