@@ -21,7 +21,6 @@
 	            			 ?>
 	            		</select>
 					</div>
-					<!-- && add_movie_form.theater_release.$dirty -->
 					<div class='form-group'>
 						<label for="theater_release" class="control-label">Theater Release Date</label>
 	            		<input name="theater_release" type="text" class="form-control" id="movie_theater_release" placeholder='01/31/1987' />
