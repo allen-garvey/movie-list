@@ -4,7 +4,6 @@
 "use strict";
 
 (function($){
-	var app = {};
 
 	//returns null if not valid or a date object if it is valid
 	app.isValidDate = function(dateString) {

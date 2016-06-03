@@ -32,11 +32,11 @@
 					</div>
 					<div class='form-group' ng-class="{'has-error': add_movie_form.pre_rating.$invalid && add_movie_form.pre_rating.$dirty}">
 						<label for="pre_rating" class="control-label">Pre-rating</label>
-	            		<input name="pre_rating" type="number" class="form-control" id="movie_pre_rating" placeholder='1-99' min='1' max='100' />
+	            		<input name="pre_rating" type="number" class="form-control" id="movie_pre_rating" placeholder='<?= Movie_List_Constants::$min_rating . '&ndash;'. Movie_List_Constants::$max_rating; ?>' min='<?= Movie_List_Constants::$min_rating; ?>' max='<?= Movie_List_Constants::$max_rating; ?>' />
 					</div>
 					<div class='form-group hide-for-add' ng-class="{'has-error': add_movie_form.post_rating.$invalid && add_movie_form.post_rating.$dirty}">
 						<label for="post_rating" class="control-label">Post-rating</label>
-	            		<input name="post_rating" type="number" class="form-control" id="movie_post_rating" placeholder='1-99' min='1' max='100' />
+	            		<input name="post_rating" type="number" class="form-control" id="movie_post_rating" placeholder='<?= Movie_List_Constants::$min_rating . '&ndash;'. Movie_List_Constants::$max_rating; ?>' min='<?= Movie_List_Constants::$min_rating; ?>' max='<?= Movie_List_Constants::$max_rating; ?>' />
 					</div>
 					<div class="modal-footer">
 						<p id="modal_errors"></p>
