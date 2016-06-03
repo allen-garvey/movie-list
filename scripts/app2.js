@@ -4,8 +4,28 @@
 "use strict";
 
 (function($){
+	/*
+	* Format fields functions
+	*/
+	app.usDateFromDate = function(dateString){
+    	if(!dateString){
+    		return '';
+    	}
+    	var split = dateString.split('-');
+    	return split[1] + '/' + split[2] + '/' + split[0];
+    };
 
-	//returns null if not valid or a date object if it is valid
+	app.formatRating = function(ratingString){
+    	if(!ratingString){
+    		return null;
+    	}
+    	return parseInt(ratingString);
+    };
+    /*
+    * Form input validation functions
+    */
+
+    //returns null if not valid or a date object if it is valid
 	app.isValidDate = function(dateString) {
 	    //mm dd yyyy format
 	    var matches1 = dateString.match(/^(\d{2})[- \/](\d{2})[- \/](\d{4})$/);
@@ -29,31 +49,46 @@
 	        }
 	    return(date);
 	};
-
-	app.usDateFromDate = function(dateString){
-    	if(!dateString){
-    		return '';
+    app.notEmpty = function(val){
+    	return val && val !== '';
+    };
+    app.validRating = function(rating){
+    	rating = parseInt(rating);
+    	return rating >= app.config.RATING_MIN && rating <= app.config.RATING_MAX;
+    };
+    app.nonRequired = function(val){
+    	return true;
+    };
+    app.nonRequiredDate = function(dateString){
+    	if(dateString){
+    		return app.isValidDate(dateString);
     	}
-    	var split = dateString.split('-');
-    	return split[1] + '/' + split[2] + '/' + split[0];
+    	return true;
+    };
+    app.nonRequiredRating = function(rating){
+    	if(rating){
+    		return app.validRating(rating);
+    	}
+    	return true;
     };
 
-	app.formatRating = function(ratingString){
-    	if(!ratingString){
-    		return null;
-    	}
-    	return parseInt(ratingString);
-    };
+    //selector is css selector for form input field
+    //key is the hash key in the app.movie object
+    //validator is a boolean function used to validate contents of value inside form input - true means valid, false is invalid
     app.movieFields = function(){
     	return [
-				{selector: '#movie_title', key: 'title'},
-				{selector: '#movie_pre_rating', key: 'pre_rating'},
-				{selector: '#movie_theater_release', key: 'theater_release'},
-				{selector: '#movie_dvd_release', key: 'dvd_release'},
-				{selector: '#movie_genre', key: 'movie_genre'}
+				{selector: '#movie_title', key: 'title', validator: app.notEmpty},
+				{selector: '#movie_pre_rating', key: 'pre_rating', validator: app.nonRequiredRating},
+				{selector: '#movie_post_rating', key: 'post_rating', validator: app.nonRequiredRating},
+				{selector: '#movie_theater_release', key: 'theater_release', validator: app.nonRequiredDate},
+				{selector: '#movie_dvd_release', key: 'dvd_release', validator: app.nonRequiredDate},
+				{selector: '#movie_genre', key: 'movie_genre', validator: app.nonRequired}
     			];
     };
 
+    /*
+    * Reset the form functions
+    */
 	app.resetForAdd = function(){
 		$('#add_edit_movie_modal').removeClass('edit').addClass('add');
     	var movie_defaults = { 'movie_genre' : $('#movie_genre').find('option').first().val() };
@@ -75,8 +110,20 @@
     app.resetForm = function(){
     	//resets for both add and edit
 		$('#modal_errors').text('');
-		$('#movie_post_rating').val('');
-		$('.form-group').removeClass('has-error');
+		$('#movie_form .form-group').removeClass('has-error');
+		app.triggerValidators();
+		app.setCanSubmitForm();
+    };
+    //disables submit button if form is invalid
+    //enables if form is valid
+    app.setCanSubmitForm = function(){
+    	var submit_button = $('#movie_form button[type="submit"]');
+    	if($('#movie_form .form-group').hasClass('has-error')){
+    		submit_button.prop("disabled", true);
+    	}
+    	else{
+    		submit_button.prop("disabled", false);
+    	}
     };
 
 	app.showModal = function(movie){
@@ -113,7 +160,9 @@
 			}
 		});
 	};
-
+	/*
+	* Save movie functions
+	*/
 	app.isFormValid = function(movie){
     	if($('#movie_form .form-group').hasClass('has-error')){
     		return false;
@@ -158,7 +207,9 @@
     	}
     };
 
-	//add listeners
+	/*
+	* add listeners
+	*/
 	$('#movie_table').on('click', '.edit-button', function(event) {
 		event.preventDefault();
 		var movie_id = $(this).closest('tr').data('id');
@@ -172,6 +223,28 @@
 	$('#movie_form').on('submit', function(event) {
 		event.preventDefault();
 		app.saveMovie();
+	});
+	//trigger validation when form is reset
+	app.triggerValidators = function(){
+		$.each(app.movieFields(), function(index, el){
+			$(el.selector).trigger('keyup');
+		});
+	};
+
+	//add validator listeners
+	$.each(app.movieFields(), function(index, el){
+		$(el.selector).on('keyup', function(event) {
+			event.preventDefault();
+			var $this = $(this);
+			var $parent = $this.closest('.form-group');
+			if(el.validator($this.val())){
+				$parent.removeClass('has-error');
+			}
+			else{
+				$parent.addClass('has-error');
+			}
+			app.setCanSubmitForm();
+		});
 	});
 
 
