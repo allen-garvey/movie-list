@@ -1,5 +1,5 @@
 <?php 
-require_once('inc/config.php');
+require_once('../inc/config.php');
 include_once(CONTROLLERS_PATH.'page_controller.php');
 require_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 $page_controller = new AGED_Index_Controller();

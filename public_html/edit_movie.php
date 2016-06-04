@@ -1,6 +1,6 @@
 <?php 
 //get info about movie for editing purposes
-require_once('inc/config.php');
+require_once('../inc/config.php');
 
 if($_SERVER['REQUEST_METHOD'] != 'POST'){
 	header('Location: ' . HOME_URL );
