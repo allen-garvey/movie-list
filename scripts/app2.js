@@ -3,7 +3,9 @@
  */
 "use strict";
 
-(function($){
+(function(config, $){
+    var app = {};
+    app.config = config;
 	/*
 	* Format fields functions
 	*/
@@ -248,4 +250,4 @@
 	});
 
 
-})(jQuery);
+})(config, jQuery);
