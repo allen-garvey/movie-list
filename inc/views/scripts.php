@@ -5,4 +5,4 @@
 	config.RATING_MIN = <?= Movie_List_Constants::$min_rating; ?>;
 	config.RATING_MAX = <?= Movie_List_Constants::$max_rating; ?>;
 </script>
-<script src='<?= SCRIPTS_URL; ?>app2.js'></script>
+<script src='<?= SCRIPTS_URL; ?>app.js'></script>

@@ -1,165 +1,253 @@
-(function(){
-	var movieApp = angular.module('movieApp', []);
+/*
+ * 
+ */
+"use strict";
 
-	movieApp.controller('movieModalCtrl', function($scope, $http){
-		$scope.isValidDate = function(dateString) {
-		    //mm dd yyyy format
-		    var matches1 = dateString.match(/^(\d{2})[- \/](\d{2})[- \/](\d{4})$/);
-		    if (!matches1) return;
-		    var matches = dateString.match(/^(\d{1,2})[- \/](\d{1,2})[- \/](\d{4})$/);
-		    if (!matches) return;
+(function(config, $){
+    var app = {};
+    app.config = config;
+	/*
+	* Format fields functions
+	*/
+	app.usDateFromDate = function(dateString){
+    	if(!dateString){
+    		return '';
+    	}
+    	var split = dateString.split('-');
+    	return split[1] + '/' + split[2] + '/' + split[0];
+    };
 
-		    // parse each piece and see if it makes a valid date object
-		    var month = parseInt(matches[1], 10);
-		    var day = parseInt(matches[2], 10);
-		    var year = parseInt(matches[3], 10);
-		    var date = new Date(year, month - 1, day);
-		    if (!date || !date.getTime()) return;
+	app.formatRating = function(ratingString){
+    	if(!ratingString){
+    		return null;
+    	}
+    	return parseInt(ratingString);
+    };
+    /*
+    * Form input validation functions
+    */
 
-		    // make sure we have no funny rollovers that the date object sometimes accepts
-		    // month > 12, day > what's allowed for the month
-		    if (date.getMonth() + 1 != month ||
-		        date.getFullYear() != year ||
-		        date.getDate() != day) {
-		            return;
-		        }
-		    return(date);
-		};
-		$scope.formSent = false;
-		$scope.errorMsg = '';
-		$scope.isTheaterReleaseValid = true;
-		$scope.isDVDReleaseValid = true;
-		$scope.movie = {};
-		$scope.mode = 'add';
+    //returns null if not valid or a date object if it is valid
+	app.isValidDate = function(dateString) {
+	    //mm dd yyyy format
+	    var matches1 = dateString.match(/^(\d{2})[- \/](\d{2})[- \/](\d{4})$/);
+	    if (!matches1) return;
+	    var matches = dateString.match(/^(\d{1,2})[- \/](\d{1,2})[- \/](\d{4})$/);
+	    if (!matches) return;
 
-		$scope.$watch('movie.theater_release', function(newValue,oldValue) {
-			$scope.isTheaterReleaseValid = newValue === null || newValue === undefined || $scope.isValidDate(newValue);
-	    });
+	    // parse each piece and see if it makes a valid date object
+	    var month = parseInt(matches[1], 10);
+	    var day = parseInt(matches[2], 10);
+	    var year = parseInt(matches[3], 10);
+	    var date = new Date(year, month - 1, day);
+	    if (!date || !date.getTime()) return;
 
-	    $scope.$watch('movie.dvd_release', function(newValue,oldValue) {
-			$scope.isDVDReleaseValid = (newValue === null) || newValue === undefined || $scope.isValidDate(newValue);
-	    });
+	    // make sure we have no funny rollovers that the date object sometimes accepts
+	    // month > 12, day > what's allowed for the month
+	    if (date.getMonth() + 1 != month ||
+	        date.getFullYear() != year ||
+	        date.getDate() != day) {
+	            return;
+	        }
+	    return(date);
+	};
+    app.notEmpty = function(val){
+    	return val && val !== '';
+    };
+    app.validRating = function(rating){
+    	rating = parseInt(rating);
+    	return rating >= app.config.RATING_MIN && rating <= app.config.RATING_MAX;
+    };
+    app.nonRequired = function(val){
+    	return true;
+    };
+    app.nonRequiredDate = function(dateString){
+    	if(dateString){
+    		return app.isValidDate(dateString);
+    	}
+    	return true;
+    };
+    app.nonRequiredRating = function(rating){
+    	if(rating){
+    		return app.validRating(rating);
+    	}
+    	return true;
+    };
 
-	    $scope.resetForm = function(){
-	    	//resets for both add and edit
-	    	$scope.formSent = false;
-			$scope.errorMsg = '';
-			$scope.isTheaterReleaseValid = true;
-			$scope.isDVDReleaseValid = true;
-			$('.form-group').removeClass('has-error');
-	    };
-	    $scope.resetForAdd = function(){
-	    	$scope.movie = {'title' : null,
-						'dvd_release' : null,
-						'theater_release' : null, 
-						'movie_genre' : $scope.getFirstGenreOption(), 
-						'pre_rating' : null
-						};
-			$scope.mode = 'add';
-	    };
-	    $scope.resetForEdit = function(){
-	    	$scope.mode = 'edit';
-	    }
+    //selector is css selector for form input field
+    //key is the hash key in the app.movie object
+    //validator is a boolean function used to validate contents of value inside form input - true means valid, false is invalid
+    app.movieFields = function(){
+    	return [
+				{selector: '#movie_title', key: 'title', validator: app.notEmpty},
+				{selector: '#movie_pre_rating', key: 'pre_rating', validator: app.nonRequiredRating},
+				{selector: '#movie_post_rating', key: 'post_rating', validator: app.nonRequiredRating},
+				{selector: '#movie_theater_release', key: 'theater_release', validator: app.nonRequiredDate},
+				{selector: '#movie_dvd_release', key: 'dvd_release', validator: app.nonRequiredDate},
+				{selector: '#movie_genre', key: 'movie_genre', validator: app.nonRequired}
+    			];
+    };
 
-	    $scope.getFirstGenreOption = function(){
-	    	//first option element is undefined because of angular ng-model at application start
-	    	if($('#movie_genre option').first().val().match(/^[0-9]+$/)){
-	    		return $('#movie_genre option').first().val();
-	    	}
-	    	return $('#movie_genre option').eq(1).val();
-	    }
+    /*
+    * Reset the form functions
+    */
+	app.resetForAdd = function(){
+		$('#add_edit_movie_modal').removeClass('edit').addClass('add');
+    	var movie_defaults = { 'movie_genre' : $('#movie_genre').find('option').first().val() };
+		$.each(this.movieFields(), function(index, el) {
+    		var value = movie_defaults[el.key] ? movie_defaults[el.key] : null;
+    		$(el.selector).val(value);
+    	});
+		this.mode = 'add';
+    };
+    app.resetForEdit = function(movie){
+    	$('#add_edit_movie_modal').addClass('edit').removeClass('add');
+    	this.mode = 'edit';
 
-	    $scope.showModal = function(type){
-	    	if(type === 'add'){
-	    		$scope.resetForAdd();
-	    	}
-	    	else{
-	    		$scope.resetForEdit();
-	    	}
-	    	$scope.resetForm();
-	    	$scope.$apply();
-	    	$('#add_edit_movie_modal').modal('show');
-	    };
+    	$.each(this.movieFields(), function(index, el) {
+    		$(el.selector).val(movie[el.key]);
+    	});
+    }
 
-	    $scope.edit = function(movie_id){
-	    	$.post('http://localhost/movie_list_2/edit_movie.php', {'movie' : JSON.stringify({'id' : movie_id})},function(data, status){
-				data = JSON.parse(data);
+    app.resetForm = function(){
+    	//resets for both add and edit
+		$('#modal_errors').text('');
+		$('#movie_form .form-group').removeClass('has-error');
+		app.triggerValidators();
+		app.setCanSubmitForm();
+    };
+    //disables submit button if form is invalid
+    //enables if form is valid
+    app.setCanSubmitForm = function(){
+    	var submit_button = $('#movie_form button[type="submit"]');
+    	if($('#movie_form .form-group').hasClass('has-error')){
+    		submit_button.prop("disabled", true);
+    	}
+    	else{
+    		submit_button.prop("disabled", false);
+    	}
+    };
+
+	app.showModal = function(movie){
+    	if(movie){
+    		this.resetForEdit(movie);
+    	}
+    	else{
+    		this.resetForAdd();
+    	}
+    	this.resetForm();
+    	$('#add_edit_movie_modal').modal('show');
+    };
+
+	app.edit = function(movie_id){
+		var self = this;
+		$.post('http://localhost/movie_list_2/edit_movie.php', {'movie' : JSON.stringify({'id' : movie_id})},function(data, status){
+			if(data['error']){
+				window.alert(data['error']);
+				console.log(data['error']);
+			}
+			else{
+				self.movie = data['movie'];
+
+				self.movie = {
+					'title' : data['movie']['title'],
+					'movie_id' : movie_id,
+					'pre_rating' : self.formatRating(data['movie']['pre_rating']),
+					'post_rating' : self.formatRating(data['movie']['post_rating']),
+					'theater_release' : self.usDateFromDate(data['movie']['theater_release']),
+					'dvd_release' : self.usDateFromDate(data['movie']['dvd_release']),
+					'movie_genre' : parseInt(data['movie']['movie_genre'])
+				};
+				self.showModal(self.movie);
+			}
+		});
+	};
+	/*
+	* Save movie functions
+	*/
+	app.isFormValid = function(movie){
+    	if($('#movie_form .form-group').hasClass('has-error')){
+    		return false;
+    	}
+    	if(movie.title === ''){
+    		return false;
+    	}
+    	return true;
+    };
+    app.serializeForm = function($form){
+    	return $form.serializeArray().reduce(function(object, current, index){ object[current.name] = current.value; return object; }, {});
+    };
+    //turns blank values in object to null for database
+    app.normalizeBlankValues = function(obj){
+    	for(var key in obj){
+    		if(obj[key] === ''){
+    			obj[key] = null;
+    		}
+    	}
+    	return obj;
+    };
+	app.saveMovie = function(){
+    	var movie = app.serializeForm($('#movie_form'));
+    	movie = app.normalizeBlankValues(movie);
+    	if(this.mode === 'edit'){
+    		movie.movie_id = this.movie.movie_id;
+    	}
+    	console.log(movie);
+    	var self = this;
+    	if(app.isFormValid(movie)){
+			$.post('http://localhost/movie_list_2/add_edit_movie.php', {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
 				if(data['error']){
-					$scope.errorMsg = data['error'];
-					$scope.$apply();
-					console.log(data['error']);
+					$('#modal_errors').text(data['error']);
+					return;
 				}
-				else{
-					$scope.movie = data['movie'];
-
-					$scope.movie = {
-						'title' : data['movie']['title'],
-						'movie_id' : movie_id,
-						'pre_rating' : $scope.formatRating(data['movie']['pre_rating']),
-						'post_rating' : $scope.formatRating(data['movie']['post_rating']),
-						'theater_release' : $scope.usDateFromDate(data['movie']['theater_release']),
-						'dvd_release' : $scope.usDateFromDate(data['movie']['dvd_release']),
-						'movie_genre' : parseInt(data['movie']['movie_genre'])
-					};
-					$scope.showModal('edit');
-				}
+				$('tbody').html(data['table_body']);
+				$('#add_edit_movie_modal').modal('hide');
 			});
-	    };
-	    $scope.formatRating = function(ratingString){
-	    	if(!ratingString){
-	    		return null;
-	    	}
-	    	return parseInt(ratingString);
-	    };
-	    $scope.usDateFromDate = function(dateString){
-	    	if(!dateString){
-	    		return '';
-	    	}
-	    	var split = dateString.split('-');
-	    	return split[1] + '/' + split[2] + '/' + split[0];
-	    };
+    	}
+    	else{
+    		$('#modal_errors').text('Please fix your input values before trying to send the form.');
+    	}
+    };
 
-	    $scope.isFormValid = function(){
-	    	if($('.form-group').hasClass('has-error')){
-	    		return false;
-	    	}
-	    	if(!$scope.movie['title']){
-	    		return false;
-	    	}
-	    	return true;
-	    };
-
-	    $scope.addEditMovieFormAction = function(){
-	    	//$scope.add_movie_form.$error.required.map(function(item){item.$setDirty();});
-	    	var lvFormSent = $scope.formSent; //because formSent will be updated asynchronously
-	    	$scope.formSent = true;
-	    	if($scope.isFormValid() && !lvFormSent){
-				$.post('http://localhost/movie_list_2/add_edit_movie.php', {'movie' : angular.toJson($scope.movie), 'mode' : angular.toJson($scope.mode)},function(data, status){
-					data = JSON.parse(data);
-					if(data['error']){
-						$scope.errorMsg = data['error'];
-					}
-					else{
-						location.reload(true); //because ajax refreshing the table has problems with registering ng-click
-						// $('tbody').html(data['table_body']);
-						// $('#add_edit_movie_modal').modal('hide');
-					}
-					$scope.formSent = false;
-				});
-	    	}
-	    	else{
-	    		if(lvFormSent){
-	    			$scope.errorMsg = 'Please wait. The form has already been sent.';
-	    		}
-	    		else{
-	    			$scope.errorMsg = 'Please fix your input values before trying to send the form.';	
-	    		}
-	    		
-	    	}
-	    	
-	    };
-	    $scope.modalAction = function(){
-	    	$scope.addEditMovieFormAction();
-	    };
+	/*
+	* add listeners
+	*/
+	$('#movie_table').on('click', '.edit-button', function(event) {
+		event.preventDefault();
+		var movie_id = $(this).closest('tr').data('id');
+		app.edit(movie_id);
 	});
-})();
+
+	$('#add-movie-button').on('click', function(event) {
+		event.preventDefault();
+		app.showModal();
+	});
+	$('#movie_form').on('submit', function(event) {
+		event.preventDefault();
+		app.saveMovie();
+	});
+	//trigger validation when form is reset
+	app.triggerValidators = function(){
+		$.each(app.movieFields(), function(index, el){
+			$(el.selector).trigger('keyup');
+		});
+	};
+
+	//add validator listeners
+	$.each(app.movieFields(), function(index, el){
+		$(el.selector).on('keyup', function(event) {
+			event.preventDefault();
+			var $this = $(this);
+			var $parent = $this.closest('.form-group');
+			if(el.validator($this.val())){
+				$parent.removeClass('has-error');
+			}
+			else{
+				$parent.addClass('has-error');
+			}
+			app.setCanSubmitForm();
+		});
+	});
+
+
+})(config, jQuery);
