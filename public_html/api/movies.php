@@ -28,7 +28,14 @@ $result = pg_execute($con, "add_edit_movie_query", [$movie_id]);
 pg_close($con);
 
 $movie_array = $db_manager->get_array_from_result($result);
+$movie_info = $movie_array[0] ?? null;
 
-echo json_encode(['movie' => $movie_array[0]]);
-
+echo json_encode(['movie' => $movie_info]);
 die();
+
+
+
+
+
+
+
