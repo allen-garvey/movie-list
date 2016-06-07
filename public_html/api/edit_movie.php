@@ -2,22 +2,21 @@
 //get info about movie for editing purposes
 require_once('../../inc/config.php');
 
-if($_SERVER['REQUEST_METHOD'] != 'POST'){
-	header('Location: ' . HOME_URL );
-	die();
-}
 header('Content-Type: application/json');
 
-if(!isset($_POST['movie'])){
-	echo json_encode(['error' => 'You have not sent a movie']);
-	die();
-}
-$movie = json_decode($_POST['movie'], true);
-if(!isset($movie['id'])){
+if(!isset($_GET['id'])){
+	http_response_code(400);
 	echo json_encode(['error' => 'You have not sent a movie id']);
 	die();
 }
-$movie_id = (int) $movie['id'];
+$movie_id = (int) $_GET['id'];
+
+if($movie_id <= 0){
+	http_response_code(400);
+	echo json_encode(['error' => 'You have not sent a valid movie id']);
+	die();
+}
+
 require_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 
 $movie_query = "SELECT title, theater_release, dvd_release, genre_id as movie_genre, pre_rating, post_rating from movies where id = $1;";
