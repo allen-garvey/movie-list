@@ -8,6 +8,7 @@ if(ENVIRONMENT_CURRENT === ENVIRONMENT_LOCAL){
 	define("SUPER_SEARCH_URL", 'http://localhost/super-search/index.php?q=');
 }
 
+define('API_URL', BASE_URL.'api/');
 define('HOME_URL', BASE_URL.'index.php');
 define('RATED_URL', BASE_URL.'rated.php');
 define('SUGGESTIONS_URL', BASE_URL.'suggestions.php');

@@ -141,7 +141,7 @@
 
 	app.edit = function(movie_id){
 		var self = this;
-		$.post(app.config.BASE_URL + 'edit_movie.php', {'movie' : JSON.stringify({'id' : movie_id})},function(data, status){
+		$.post(app.config.API_URL + 'edit_movie.php', {'movie' : JSON.stringify({'id' : movie_id})},function(data, status){
 			if(data['error']){
 				window.alert(data['error']);
 				console.log(data['error']);
@@ -195,7 +195,7 @@
     	console.log(movie);
     	var self = this;
     	if(app.isFormValid(movie)){
-			$.post(app.config.BASE_URL + 'add_edit_movie.php', {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
+			$.post(app.config.API_URL + 'add_edit_movie.php', {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
 				if(data['error']){
 					$('#modal_errors').text(data['error']);
 					return;

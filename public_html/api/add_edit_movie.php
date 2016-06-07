@@ -1,5 +1,5 @@
 <?php 
-require_once('../inc/config.php');
+require_once('../../inc/config.php');
 
 if($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['movie']) || !isset($_POST['mode'])) {
 	header('Location: ' . HOME_URL );
