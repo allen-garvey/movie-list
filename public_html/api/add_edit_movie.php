@@ -65,6 +65,7 @@ if(count($errors) > 0){
 	foreach ($errors as $error) {
 		$error_message = $error_message . $error . ' ';
 	}
+	http_response_code(400);
 	echo json_encode(['error' => $error_message]);
 	die();
 }
