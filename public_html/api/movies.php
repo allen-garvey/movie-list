@@ -23,8 +23,20 @@ $movie_query = "SELECT title, theater_release, dvd_release, genre_id as movie_ge
 
 $db_manager = new AGED_PG_Database_Manager();
 $con = $db_manager->get_database_connection_object();
-pg_prepare($con, "add_edit_movie_query", $movie_query);
+$success = pg_prepare($con, "add_edit_movie_query", $movie_query);
+if($success === false){
+	pg_close($con);
+	http_response_code(500);
+	echo json_encode(['error' => 'There was a problem creating the prepared statement']);
+	die();
+}
 $result = pg_execute($con, "add_edit_movie_query", [$movie_id]);
+if($result === false){
+	pg_close($con);
+	http_response_code(500);
+	echo json_encode(['error' => "There's a problem with the database"]);
+	die();
+}
 pg_close($con);
 
 $movie_array = $db_manager->get_array_from_result($result);
