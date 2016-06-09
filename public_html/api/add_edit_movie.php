@@ -2,7 +2,8 @@
 require_once('../../inc/config.php');
 
 if($_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['movie']) || !isset($_POST['mode'])) {
-	header('Location: ' . HOME_URL );
+	http_response_code(400);
+	echo json_encode(['error' => "Bad request method or missing movie"]);
 	die();
 }
 header('Content-Type: application/json');
