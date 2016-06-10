@@ -189,13 +189,15 @@
 	app.saveMovie = function(){
     	var movie = app.serializeForm($('#movie_form'));
     	movie = app.normalizeBlankValues(movie);
+        var query_params = '';
     	if(this.mode === 'edit'){
     		movie.movie_id = this.movie.movie_id;
+            query_params = '?id=' + parseInt(movie.movie_id);
     	}
     	console.log(movie);
     	var self = this;
     	if(app.isFormValid(movie)){
-			$.post(app.config.API_URL + 'add_edit_movie.php', {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
+			$.post(app.config.API_URL + 'add_edit_movie.php' + query_params, {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
 				if(data['error']){
 					$('#modal_errors').text(data['error']);
 					return;
