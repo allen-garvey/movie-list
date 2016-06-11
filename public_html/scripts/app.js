@@ -190,25 +190,32 @@
     	var movie = app.serializeForm($('#movie_form'));
     	movie = app.normalizeBlankValues(movie);
         var query_params = '';
+        var request_type = 'POST';
     	if(this.mode === 'edit'){
     		movie.movie_id = this.movie.movie_id;
             query_params = '?id=' + parseInt(movie.movie_id);
+            request_type = 'PATCH';
     	}
     	console.log(movie);
-    	var self = this;
-    	if(app.isFormValid(movie)){
-			$.post(app.config.API_URL + 'add_edit_movie.php' + query_params, {'movie' : JSON.stringify(movie), 'mode' : self.mode},function(data, status){
-				if(data['error']){
-					$('#modal_errors').text(data['error']);
-					return;
-				}
-				$('tbody').html(data['table_body']);
-				$('#add_edit_movie_modal').modal('hide');
-			});
-    	}
-    	else{
-    		$('#modal_errors').text('Please fix your input values before trying to send the form.');
-    	}
+        if(!app.isFormValid(movie)){
+            $('#modal_errors').text('Please fix your input values before trying to send the form.');
+            return;
+        }
+        //save movie
+        var self = this;
+        $.ajax({
+            type: 'POST',
+            url: app.config.API_URL + 'add_edit_movie.php' + query_params,
+            data: {'movie' : JSON.stringify(movie), 'method': request_type},
+            success: function(data, status){
+                                                if(data['error']){
+                                                    $('#modal_errors').text(data['error']);
+                                                    return;
+                                                }
+                                                $('tbody').html(data['table_body']);
+                                                $('#add_edit_movie_modal').modal('hide');
+                                            }
+        });
     };
 
 	/*
