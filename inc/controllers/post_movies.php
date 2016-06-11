@@ -41,7 +41,7 @@ else{
 
 foreach ($movie_keys as $key) {
 	if(($key === 'theater_release' || $key === 'dvd_release') && !empty($movie[$key])){
-		$date = DateTime::createFromFormat('m/d/Y', $movie[$key]);
+		$date = DateTime::createFromFormat('Y-m-d', $movie[$key]);
 		if(is_object($date)){
 			$prepared_statement_array[$key] = $date->format('Y-m-d');
 		}

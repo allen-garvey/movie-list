@@ -6,17 +6,10 @@
 (function(config, $){
     var app = {};
     app.config = config;
-	/*
+	
+    /*
 	* Format fields functions
 	*/
-	app.usDateFromDate = function(dateString){
-    	if(!dateString){
-    		return '';
-    	}
-    	var split = dateString.split('-');
-    	return split[1] + '/' + split[2] + '/' + split[0];
-    };
-
 	app.formatRating = function(ratingString){
     	var ret = parseInt(ratingString);
         if(isNaN(ret)){
@@ -24,33 +17,22 @@
     	}
     	return ret;
     };
+    
     /*
     * Form input validation functions
     */
-
     //returns null if not valid or a date object if it is valid
 	app.isValidDate = function(dateString) {
-	    //mm dd yyyy format
-	    var matches1 = dateString.match(/^(\d{2})[- \/](\d{2})[- \/](\d{4})$/);
-	    if (!matches1) return;
-	    var matches = dateString.match(/^(\d{1,2})[- \/](\d{1,2})[- \/](\d{4})$/);
-	    if (!matches) return;
-
-	    // parse each piece and see if it makes a valid date object
-	    var month = parseInt(matches[1], 10);
-	    var day = parseInt(matches[2], 10);
-	    var year = parseInt(matches[3], 10);
-	    var date = new Date(year, month - 1, day);
-	    if (!date || !date.getTime()) return;
-
-	    // make sure we have no funny rollovers that the date object sometimes accepts
-	    // month > 12, day > what's allowed for the month
-	    if (date.getMonth() + 1 != month ||
-	        date.getFullYear() != year ||
-	        date.getDate() != day) {
-	            return;
-	        }
-	    return(date);
+        if(!dateString){
+            return null;
+        }
+        try{
+            var date = $.datepicker.parseDate('yy-mm-dd', dateString);
+            return date;
+        }
+        catch(err){
+            return null;
+        }
 	};
     app.notEmpty = function(val){
     	return val && val !== '';
@@ -152,8 +134,8 @@
 					'id'    : movie_id,
 					'pre_rating' : self.formatRating(data['movie']['pre_rating']),
 					'post_rating' : self.formatRating(data['movie']['post_rating']),
-					'theater_release' : self.usDateFromDate(data['movie']['theater_release']),
-					'dvd_release' : self.usDateFromDate(data['movie']['dvd_release']),
+					'theater_release' : data['movie']['theater_release'],
+					'dvd_release' : data['movie']['dvd_release'],
 					'movie_genre' : parseInt(data['movie']['movie_genre'])
 				};
 				self.showModal(self.movie);
@@ -255,6 +237,7 @@
 			app.setCanSubmitForm();
 		});
 	});
-
+    //add datepicker
+    $("input[type='date']").datepicker({"dateFormat": "yy-mm-dd"});
 
 })(config, jQuery);
