@@ -62,8 +62,8 @@ class MovieDataValidator{
 			case 'movie_genre':
 				return $this->isMovieGenreValid();
 				break;
-			case 'movie_id':
-				return true;
+			case 'id':
+				return is_int($this->movie['id']);
 				break;
 			default:
 				return false;

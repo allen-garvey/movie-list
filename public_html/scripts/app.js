@@ -192,7 +192,7 @@
         var query_params = '';
         var request_type = 'POST';
     	if(this.mode === 'edit'){
-    		movie.movie_id = this.movie.movie_id;
+    		movie.id = this.movie.movie_id;
             query_params = '?id=' + parseInt(movie.movie_id);
             request_type = 'PATCH';
     	}

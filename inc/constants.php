@@ -42,7 +42,7 @@ class Movie_List_Constants
 		self::$theater_release_error = self::$date_error . ' for theater release date.';
 
 		self::$add_movie_keys = ['title', 'movie_genre', 'theater_release', 'dvd_release', 'pre_rating'];
-		self::$edit_movie_keys = ['title', 'movie_genre', 'theater_release', 'dvd_release', 'pre_rating', 'post_rating', 'movie_id'];
+		self::$edit_movie_keys = ['title', 'movie_genre', 'theater_release', 'dvd_release', 'pre_rating', 'post_rating', 'id'];
 		self::$non_null_keys = ['title', 'movie_id'];
 	}
 
