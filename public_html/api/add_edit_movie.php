@@ -1,7 +1,7 @@
 <?php 
 require_once('../../inc/config.php');
 
-if( $_SERVER['REQUEST_METHOD'] != 'POST' || !isset($_POST['movie']) || is_null(json_decode($_POST['movie'], true)) ) {
+if( !isset($_POST['movie']) || is_null(json_decode($_POST['movie'], true)) ) {
 	http_response_code(400);
 	echo json_encode(['error' => "Bad request: no movie sent"]);
 	die();
