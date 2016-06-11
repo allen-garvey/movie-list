@@ -2,7 +2,7 @@
 <script src='<?= SCRIPTS_URL; ?>bootstrap.min.js'></script>
 <script>
 	var config = {};
-	config.API_URL = '<?= API_URL; ?>';
+	config.MOVIES_API_URL = '<?= API_URL.'movies.php'; ?>';
 	config.RATING_MIN = <?= Movie_List_Constants::$min_rating; ?>;
 	config.RATING_MAX = <?= Movie_List_Constants::$max_rating; ?>;
 </script>

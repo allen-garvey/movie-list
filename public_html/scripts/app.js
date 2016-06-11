@@ -141,17 +141,14 @@
 
 	app.edit = function(movie_id){
 		var self = this;
-		$.get(app.config.API_URL + 'movies.php?id=' + movie_id, function(data, status){
+		$.get(app.config.MOVIES_API_URL + '?id=' + parseInt(movie_id), function(data, status){
 			if(data['error']){
-				window.alert(data['error']);
 				console.log(data['error']);
 			}
 			else{
-				self.movie = data['movie'];
-
 				self.movie = {
 					'title' : data['movie']['title'],
-					'movie_id' : movie_id,
+					'id'    : movie_id,
 					'pre_rating' : self.formatRating(data['movie']['pre_rating']),
 					'post_rating' : self.formatRating(data['movie']['post_rating']),
 					'theater_release' : self.usDateFromDate(data['movie']['theater_release']),
@@ -192,8 +189,8 @@
         var query_params = '';
         var request_type = 'POST';
     	if(this.mode === 'edit'){
-    		movie.id = this.movie.movie_id;
-            query_params = '?id=' + parseInt(movie.movie_id);
+    		movie.id = this.movie.id;
+            query_params = '?id=' + parseInt(movie.id);
             request_type = 'PATCH';
     	}
     	console.log(movie);
@@ -205,7 +202,7 @@
         var self = this;
         $.ajax({
             type: 'POST',
-            url: app.config.API_URL + 'add_edit_movie.php' + query_params,
+            url: app.config.MOVIES_API_URL + query_params,
             data: {'movie' : JSON.stringify(movie), 'method': request_type},
             success: function(data, status){
                                                 if(data['error']){
