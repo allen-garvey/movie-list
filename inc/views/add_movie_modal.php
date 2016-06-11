@@ -23,11 +23,11 @@
 					</div>
 					<div class='form-group'>
 						<label for="theater_release" class="control-label">Theater Release Date</label>
-	            		<input name="theater_release" type="text" class="form-control" id="movie_theater_release" placeholder='01/31/1987' />
+	            		<input name="theater_release" type="date" class="form-control" id="movie_theater_release" placeholder='01/31/1987' />
 					</div>
 					<div class='form-group'>
 						<label for="dvd_release" class="control-label">DVD Release Date</label>
-	            		<input name="dvd_release" type="text" class="form-control" id="movie_dvd_release" placeholder='01/31/1992' />
+	            		<input name="dvd_release" type="date" class="form-control" id="movie_dvd_release" placeholder='01/31/1992' />
 					</div>
 					<div class='form-group'>
 						<label for="pre_rating" class="control-label">Pre-rating</label>
