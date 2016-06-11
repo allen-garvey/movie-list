@@ -18,10 +18,11 @@
     };
 
 	app.formatRating = function(ratingString){
-    	if(!ratingString){
+    	var ret = parseInt(ratingString);
+        if(isNaN(ret)){
     		return null;
     	}
-    	return parseInt(ratingString);
+    	return ret;
     };
     /*
     * Form input validation functions
