@@ -2,12 +2,43 @@
 include_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 include_once(INC_PATH.'constants.php');
 
+
+class AGED_Page_Controller_Factory{
+	public static function controller_from_page_type($page_type) : AGED_Page_Controller{
+		switch ($page_type) {
+			case AGED_Page_Controller::PAGE_SUGGESTIONS:
+				return new AGED_Suggestions_Controller;
+				break;
+			case AGED_Page_Controller::PAGE_RATED:
+				return new AGED_Rated_Controller;
+				break;
+			default:
+				return new AGED_Index_Controller;
+				break;
+		}
+	}
+}
+
+
+
 abstract class AGED_Page_Controller{
+	const PAGE_INDEX = 1;
+	const PAGE_SUGGESTIONS = 2;
+	const PAGE_RATED = 3;
+
 	protected $page_name; //used in nav
 	protected $default_query_sort_args; //used if there are no sorting variables in get
 	protected $db_query; //db_query that table results come from (minus any ORDER BY statements or ending semicolon)
 	protected $db_manager;
 	protected $valid_sort_variables_array; //used to determine if sort variables from get are valid
+
+	public static function get_movie_genre_result(){
+		$db_manager = new AGED_PG_Database_Manager;
+		$con = $db_manager->get_database_connection_object();
+		$movie_genre_result = pg_query($con, 'SELECT genre_id, title FROM m_genre ORDER BY title;') or die(pg_last_error($con)); 
+		pg_close($con);
+		return $movie_genre_result;
+	}
 
 	protected function init_controller(){
 		$this->db_manager = new AGED_PG_Database_Manager;
@@ -76,6 +107,7 @@ abstract class AGED_Page_Controller{
 
 	abstract protected function get_rows_from_result($result);
 
+	abstract public function get_page_type() : int;
 
 }
 
@@ -108,6 +140,10 @@ class AGED_Index_Controller extends AGED_Page_Controller
 		return $rows;
 	}
 
+	public function get_page_type() : int{
+	 	return AGED_Page_Controller::PAGE_INDEX;
+	}
+
 }
 
 /**
@@ -131,12 +167,15 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 		while($movie = pg_fetch_array($released_unwatched_result)){
 			$type = $movie['release'];
 			$release_date = ($type === 'theater_released') ? $this->db_manager->database_date_format_us($movie['release_date']) : '';
-			$rows = $rows . "<tr class='$type' data-id='$movie[id]'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$release_date</td><td>$movie[genre]</td></tr>";
+			$rows = $rows . "<tr class='$type' data-id='$movie[id]'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$release_date</td><td>$movie[genre]</td><td><button class='btn btn-default btn-xs edit-button'>Edit</button></td></tr>";
 			$i++;
 		}
 		return $rows;
 	}
 
+	public function get_page_type() : int{
+	 	return AGED_Page_Controller::PAGE_SUGGESTIONS;
+	}
 }
 
 /**
@@ -168,13 +207,15 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 			else{
 				$class = 'bad';
 			}
-			$rows = $rows . "<tr class='$class' data-id='$movie[id]'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$movie[post_rating]</td><td>$movie[rating_difference]</td><td>$movie[genre]</td><td>$date</td></tr>";
+			$rows = $rows . "<tr class='$class' data-id='$movie[id]'><td>$i</td><td><a href='" . SUPER_SEARCH_URL  ."$movie[title]'>$movie[title]</a></td><td>$movie[pre_rating]</td><td>$movie[post_rating]</td><td>$movie[rating_difference]</td><td>$movie[genre]</td><td>$date</td><td><button class='btn btn-default btn-xs edit-button'>Edit</button></td></tr>";
 			$i++;
 		}
 		return $rows;
 	}
+
+	public function get_page_type() : int{
+	 	return AGED_Page_Controller::PAGE_RATED;
+	}
 	
 }
 
-
-?>
