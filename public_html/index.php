@@ -3,12 +3,7 @@ require_once('../inc/config.php');
 include_once(CONTROLLERS_PATH.'page_controller.php');
 require_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 $page_controller = new AGED_Index_Controller();
-
-//get movie genres
-$db_manager = new AGED_PG_Database_Manager;
-$con = $db_manager->get_database_connection_object();
-$movie_genre_result = pg_query($con, 'SELECT genre_id, title FROM m_genre ORDER BY title;') or die(pg_last_error($con)); 
-pg_close($con);
+$movie_genre_result = AGED_Page_Controller::get_movie_genre_result();
 
 ?>
 

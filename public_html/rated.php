@@ -3,7 +3,7 @@ require_once('../inc/config.php');
 require_once(CONTROLLERS_PATH.'page_controller.php');
 
 $page_controller = new AGED_Rated_Controller();
-
+$movie_genre_result = AGED_Page_Controller::get_movie_genre_result();
 ?>
 <?php 
 	include(VIEWS_PATH.'head.php');
@@ -18,6 +18,7 @@ $page_controller = new AGED_Rated_Controller();
 				<th><a href="<?= RATED_URL; ?>?sort=post_rating desc,title">Post</a></th><th><a href="<?= RATED_URL; ?>?sort=rating_difference desc">Diff</a></th>
 				<th><a href='<?= RATED_URL; ?>?sort=genre,title'>Genre</a></th>
 				<th><a href='<?= RATED_URL; ?>?sort=date_watched desc,title'>Watched</a></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>

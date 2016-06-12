@@ -6,5 +6,6 @@
 	config.MOVIES_API_URL = '<?= API_URL.'movies.php'; ?>';
 	config.RATING_MIN = <?= Movie_List_Constants::$min_rating; ?>;
 	config.RATING_MAX = <?= Movie_List_Constants::$max_rating; ?>;
+	config.PAGE_TYPE = <?= $page_controller->get_page_type(); ?>;
 </script>
 <script src='<?= SCRIPTS_URL; ?>app.js'></script>

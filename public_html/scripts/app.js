@@ -182,11 +182,10 @@
             return;
         }
         //save movie
-        var self = this;
         $.ajax({
             type: 'POST',
             url: app.config.MOVIES_API_URL + query_params,
-            data: {'movie' : JSON.stringify(movie), 'method': request_type},
+            data: {'movie' : JSON.stringify(movie), 'method': request_type, 'page_type': app.config.PAGE_TYPE},
             success: function(data, status){
                                                 if(data['error']){
                                                     $('#modal_errors').text(data['error']);
