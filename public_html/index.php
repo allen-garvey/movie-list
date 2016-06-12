@@ -34,9 +34,6 @@ pg_close($con);
 		<div class='center add_button'>
 			<button type="button" class='btn btn-lg btn-primary' id="add-movie-button">Add Movie</button>
 		</div>
-		<?php include(VIEWS_PATH.'add_movie_modal.php'); ?>
 	</main>
-
-
-<?php include(VIEWS_PATH.'scripts.php'); ?>
+	<?php include(VIEWS_PATH.'footer.php'); ?>
 </body></html>

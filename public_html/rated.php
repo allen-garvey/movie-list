@@ -25,4 +25,5 @@ $page_controller = new AGED_Rated_Controller();
 		</tbody>
 	</table>
 </main>
+<?php include(VIEWS_PATH.'footer.php'); ?>
 </body></html>
