@@ -36,4 +36,4 @@ pg_close($con);
 		</div>
 	</main>
 	<?php include(VIEWS_PATH.'footer.php'); ?>
-</body></html>
+
