@@ -35,6 +35,9 @@ h1.main_title{
 	font-size: 3.998em;
 	margin-left: 10px;
 	margin-top:10px;
+	a{
+		color: black;
+	}
 }
 
 .nav-pills > li.active > a, .nav-pills>li.active>a:hover {
@@ -48,6 +51,8 @@ h1.main_title{
 
 .jumbotron{
 	padding-top:.1px; //otherwise won't extend to top of screen for some reason
+	padding-left: 15px;
+	padding-right: 15px;
 }
 thead{
 	background-color: #eee;
