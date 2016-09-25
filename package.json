@@ -1,0 +1,23 @@
+{
+  "name": "movie_list_2",
+  "version": "1.0.0",
+  "description": "CRUD web application to display upcoming movies of interest to the user, recommendations based on if those movies have been released and watched/rated movies.",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allen-garvey/movie-list.git"
+  },
+  "author": "Allen Garvey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/allen-garvey/movie-list/issues"
+  },
+  "homepage": "https://github.com/allen-garvey/movie-list#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}
