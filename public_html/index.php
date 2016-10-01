@@ -15,11 +15,7 @@ $movie_genre_result = AGED_Page_Controller::get_movie_genre_result();
 		<table id='movie_table'>
 			<thead>
 				<tr>
-					<th></th>
-					<th><a href="<?= HOME_URL; ?>?sort=title">Title</a></th>
-					<th><a href="<?= HOME_URL; ?>?sort=pre_rating desc,title">Pre</a></th>
-					<th><a href="<?= HOME_URL; ?>?sort=release,release_date,title">Release</a></th>
-					<th></th>
+					<?php include(VIEWS_PATH.$page_controller->get_name().'_table_headings.php'); ?>
 				</tr>
 			</thead>
 			<tbody>
