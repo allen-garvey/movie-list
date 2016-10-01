@@ -1,0 +1,25 @@
+h1.main_title{
+	font-family: $title_font_family;
+	font-size: 3.998em;
+	margin-left: 10px;
+	margin-top:10px;
+	a{
+		color: black;
+	}
+}
+
+//Active nav styles
+.page_home [data-nav="home"] > a,
+.page_suggestions [data-nav="suggestions"] > a,
+.page_rated [data-nav="rated"] > a,
+.nav [data-nav]:hover > a {
+	font-family: $title_font_family;
+	background-color: #223;
+	color: white;
+}
+
+.jumbotron{
+	padding-top:.1px; //otherwise won't extend to top of screen for some reason
+	padding-left: 15px;
+	padding-right: 15px;
+}

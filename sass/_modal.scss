@@ -1,0 +1,24 @@
+/*
+* Modal Styles
+*/
+.modal-header{
+	background-color: $blue;
+	color : white;
+}
+.modal-footer{
+	border-top: none;
+	p{
+		text-align: left;
+	}
+}
+
+.add .hide-for-add{
+	display: none;
+}
+.edit .hide-for-edit{
+	display: none;
+}
+label{
+	margin-bottom: 0;
+	font-family: $sans_serif_font_family;
+}

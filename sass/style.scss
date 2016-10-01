@@ -27,114 +27,15 @@ h1,h2,h3,h4,button{
 	font-family: $sans_serif_font_family;
 }
 
-h1.main_title{
-	font-family: $title_font_family;
-	font-size: 3.998em;
-	margin-left: 10px;
-	margin-top:10px;
-	a{
-		color: black;
-	}
-}
-
-//Active nav styles
-.page_home [data-nav="home"] > a,
-.page_suggestions [data-nav="suggestions"] > a,
-.page_rated [data-nav="rated"] > a,
-.nav [data-nav]:hover > a {
-	font-family: $title_font_family;
-	background-color: #223;
-	color: white;
-}
-
-.jumbotron{
-	padding-top:.1px; //otherwise won't extend to top of screen for some reason
-	padding-left: 15px;
-	padding-right: 15px;
-}
-/*
-* Table styles
-*/
-table{
-	margin-left: auto;
-	margin-right: auto;
-}
-thead{
-	background-color: #eee;
-}
-//for CSS row numbers in first td of row
-tbody{
-	counter-reset: rowNumber;
-}
-tbody tr {
-    counter-increment: rowNumber;
-}
-tbody tr td:first-child::before {
-    content: counter(rowNumber);
-    min-width: 1em;
-}
-td, th{
-	padding: 0.8em;
-	text-align: left;	
-}
-th{
-	font-weight: normal;
-}
-
-label{
-	margin-bottom: 0;
-	font-family: $sans_serif_font_family;
-}
-
-.dvd_released, .good{
-	background-color: $green;
-}
-.theater_released, .ok{
-	background-color: $yellow;
-}
-.unreleased, .bad{
-	background-color: $red;
-}
-
-td a{
-	color: black;
-}
-
 .center{
 	text-align: center;
 }
 
-/*
-* Button styles
-*/
-.add_button{
-	margin: 1em 0;
-}
-.disabled_button{
-	margin: 10px;
-	width: 80px;
-	height: 30px;
-}
+@import 'header.scss';
+@import 'movie_table.scss';
+@import 'buttons.scss';
+@import 'modal.scss';
 
-/*
-* Modal Styles
-*/
-.modal-header{
-	background-color: $blue;
-	color : white;
-}
-.modal-footer{
-	border-top: none;
-	p{
-		text-align: left;
-	}
-}
 
-.add .hide-for-add{
-	display: none;
-}
-.edit .hide-for-edit{
-	display: none;
-}
 
 
