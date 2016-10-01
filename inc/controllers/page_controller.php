@@ -4,7 +4,7 @@ include_once(INC_PATH.'constants.php');
 
 
 class AGED_Page_Controller_Factory{
-	public static function controller_from_page_type($page_type) : AGED_Page_Controller{
+	public static function controller_from_page_type(int $page_type=null) : AGED_Page_Controller{
 		switch ($page_type) {
 			case AGED_Page_Controller::PAGE_SUGGESTIONS:
 				return new AGED_Suggestions_Controller;
