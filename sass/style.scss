@@ -54,8 +54,26 @@ h1.main_title{
 	padding-left: 15px;
 	padding-right: 15px;
 }
+/*
+* Table styles
+*/
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
 thead{
 	background-color: #eee;
+}
+//for CSS row numbers in first td of row
+tbody{
+	counter-reset: rowNumber;
+}
+tbody tr {
+    counter-increment: rowNumber;
+}
+tbody tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
 }
 td, th{
 	padding: 0.8em;
@@ -65,19 +83,11 @@ th{
 	font-weight: normal;
 }
 
-table{
-	margin-left: auto;
-	margin-right: auto;
-}
-
 label{
 	margin-bottom: 0;
 	font-family: $sans_serif_font_family;
 }
 
-/*
-* Table styles
-*/
 .dvd_released, .good{
 	background-color: $green;
 }
@@ -97,7 +107,7 @@ td a{
 }
 
 /*
-* Index styles
+* Button styles
 */
 .add_button{
 	margin: 1em 0;
