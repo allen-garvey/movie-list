@@ -179,6 +179,16 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 */
 class AGED_Rated_Controller extends AGED_Page_Controller
 {
+	public static function get_css_class_for_rating(int $rating) : string{
+		if($rating >= Movie_List_Constants::$good_movie_rating){
+			return 'good';
+		}
+		elseif($rating >= Movie_List_Constants::$ok_movie_rating){
+			return 'ok';
+		}
+		return 'bad';
+	}
+
 	function __construct()
 	{
 		$this->init_controller();
@@ -193,15 +203,8 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 
 		while($movie = pg_fetch_array($released_unwatched_result)){
 			$date = $this->db_manager->database_date_format_us($movie['date_watched']);
-			if($movie['post_rating'] >= Movie_List_Constants::$good_movie_rating){
-				$class = 'good';
-			}
-			elseif($movie['post_rating'] >= Movie_List_Constants::$ok_movie_rating){
-				$class = 'ok';
-			}
-			else{
-				$class = 'bad';
-			}
+			$class = self::get_css_class_for_rating($movie['post_rating']);
+
 			$rows = $rows . "<tr class='$class' data-id='$movie[id]'><td></td><td><a href='" . SUPER_SEARCH_URL  . htmlentities($movie['title']) . "'>". htmlentities($movie['title'])."</a></td><td>$movie[pre_rating]</td><td>$movie[post_rating]</td><td>$movie[rating_difference]</td><td>$movie[genre]</td><td>$date</td><td><button class='btn btn-default btn-xs edit-button'>Edit</button></td></tr>";
 		}
 		return $rows;
