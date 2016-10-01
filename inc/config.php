@@ -1,12 +1,12 @@
 <?php 
 define('ENVIRONMENT_LOCAL', 0);
-define("ENVIRONMENT_CURRENT", ENVIRONMENT_LOCAL);
+define('ENVIRONMENT_CURRENT', ENVIRONMENT_LOCAL);
 
-if(ENVIRONMENT_CURRENT === ENVIRONMENT_LOCAL){
-	define("BASE_URL","http://localhost/movie_list_2/public_html/");
-	define("ROOT_PATH",$_SERVER["DOCUMENT_ROOT"] . "/movie_list_2/");
-	define("SUPER_SEARCH_URL", 'http://search.startpage.dev/index.php?q=');
-}
+define('DOMAIN', getenv('MULTISITE_DOMAIN'));
+define('BASE_URL','http://movies.'.DOMAIN.'/');
+define('SUPER_SEARCH_URL', 'http://search.'.DOMAIN.'/index.php?q=');
+define('ROOT_PATH', dirname(__FILE__, 2).'/');
+
 
 define('API_URL', BASE_URL.'api/');
 define('HOME_URL', BASE_URL.'index.php');
