@@ -9,9 +9,9 @@ define('ROOT_PATH', dirname(__FILE__, 2).'/');
 
 
 define('API_URL', BASE_URL.'api/');
-define('HOME_URL', BASE_URL.'index.php');
-define('RATED_URL', BASE_URL.'rated.php');
-define('SUGGESTIONS_URL', BASE_URL.'suggestions.php');
+define('HOME_URL', BASE_URL.'');
+define('RATED_URL', BASE_URL.'rated/');
+define('SUGGESTIONS_URL', BASE_URL.'suggestions/');
 define('STYLES_URL', BASE_URL.'styles/');
 define('SCRIPTS_URL', BASE_URL.'scripts/');
 
