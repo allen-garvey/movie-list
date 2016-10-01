@@ -26,7 +26,7 @@ $movie_genre_result = AGED_Page_Controller::get_movie_genre_result();
 				<?= $page_controller->get_table_content_rows(); ?>
 			</tbody>
 		</table>
-		<div class='center add_button'>
+		<div class='text-center add_button'>
 			<button type="button" class='btn btn-lg btn-primary' id="add-movie-button">Add Movie</button>
 		</div>
 	</main>

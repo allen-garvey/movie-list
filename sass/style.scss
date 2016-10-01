@@ -27,10 +27,6 @@ h1,h2,h3,h4,button{
 	font-family: $sans_serif_font_family;
 }
 
-.center{
-	text-align: center;
-}
-
 @import 'header.scss';
 @import 'movie_table.scss';
 @import 'buttons.scss';
