@@ -44,11 +44,11 @@ abstract class AGED_Page_Controller{
 		$this->db_manager = new AGED_PG_Database_Manager;
 	}
 
-	public function get_title(){
+	public function get_title() : string{
 		return "Allen's Movie List";
 	}
 
-	function get_nav_items(){
+	function get_nav_items() : string{
 		$titles = array('Main', 'Suggestions', 'Rated');
 		$selected_class = array();
 		foreach ($titles as $title) {
@@ -72,7 +72,7 @@ abstract class AGED_Page_Controller{
 		}
 	}
 
-	protected function is_valid_sort_variables($sort_variables){
+	protected function is_valid_sort_variables($sort_variables) : bool{
 		$sort_variables_array = explode(',', $sort_variables);
 
 		foreach ($sort_variables_array as $sorter) {
@@ -92,7 +92,7 @@ abstract class AGED_Page_Controller{
 		return preg_replace('~.*\K'. preg_quote($search, '~') . '~si', '$1' . $replace, $sorter);
 	}
 
-	function get_table_content_rows(){
+	function get_table_content_rows() : string{
 		return $this->get_rows_from_result($this->get_query_result($this->get_sort_variables()));
 	}
 
@@ -105,7 +105,7 @@ abstract class AGED_Page_Controller{
 		return $query_result;
 	}
 
-	abstract protected function get_rows_from_result($result);
+	abstract protected function get_rows_from_result($result) : string;
 
 	abstract public function get_page_type() : int;
 
@@ -126,7 +126,7 @@ class AGED_Index_Controller extends AGED_Page_Controller
 		$this->valid_sort_variables_array = array('title', 'pre_rating', 'release_date', 'release');
 	}
 
-	protected function get_rows_from_result($unwatched_movies_result){
+	protected function get_rows_from_result($unwatched_movies_result) : string{
 		$rows = '';
 
 		while($movie = pg_fetch_array($unwatched_movies_result)){
@@ -158,7 +158,7 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 		$this->valid_sort_variables_array = array('pre_rating', 'title', 'genre','release_date','release');
 	}
 
-	function get_rows_from_result($released_unwatched_result){
+	function get_rows_from_result($released_unwatched_result) : string{
 		$rows = '';
 
 		while($movie = pg_fetch_array($released_unwatched_result)){
@@ -198,7 +198,7 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 		$this->valid_sort_variables_array = array('pre_rating', 'post_rating' , 'title', 'genre','date_watched','rating_difference');
 	}
 
-	function get_rows_from_result($released_unwatched_result){
+	function get_rows_from_result($released_unwatched_result) : string{
 		$rows = '';
 
 		while($movie = pg_fetch_array($released_unwatched_result)){
