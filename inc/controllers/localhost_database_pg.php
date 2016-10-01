@@ -61,9 +61,5 @@ class AGED_PG_Database_Manager{
 		 } 
 		return $genre_ids;
 	}
-
-
-
 }
 
-?>
