@@ -23,15 +23,12 @@ nav li{
 	margin-left: 10px;
 }
 
-%title_font_family{
-	font-family: $title_font_family;
-}
 h1,h2,h3,h4,button{
 	font-family: $sans_serif_font_family;
 }
 
 h1.main_title{
-	@extend %title_font_family;
+	font-family: $title_font_family;
 	font-size: 3.998em;
 	margin-left: 10px;
 	margin-top:10px;
@@ -40,12 +37,13 @@ h1.main_title{
 	}
 }
 
-.nav-pills > li.active > a, .nav-pills>li.active>a:hover {
-	@extend %title_font_family;
+//Active nav styles
+.page_home [data-nav="home"] > a,
+.page_suggestions [data-nav="suggestions"] > a,
+.page_rated [data-nav="rated"] > a,
+.nav [data-nav]:hover > a {
+	font-family: $title_font_family;
 	background-color: #223;
-}
-
-.selected a{
 	color: white;
 }
 
