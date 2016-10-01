@@ -93,7 +93,11 @@ abstract class AGED_Page_Controller{
 
 	abstract public function get_page_type() : int;
 
-	abstract public function get_body_tags() : string;
+	public function get_body_tags() : string{
+		return 'page_'.$this->get_name();
+	}
+
+	abstract public function get_name() : string;	
 
 }
 
@@ -127,8 +131,8 @@ class AGED_Index_Controller extends AGED_Page_Controller
 	 	return AGED_Page_Controller::PAGE_INDEX;
 	}
 
-	public function get_body_tags() : string{
-		return 'page_home';
+	public function get_name() : string{
+		return 'home';
 	}
 
 }
@@ -161,8 +165,8 @@ class AGED_Suggestions_Controller extends AGED_Page_Controller
 	 	return AGED_Page_Controller::PAGE_SUGGESTIONS;
 	}
 
-	public function get_body_tags() : string{
-		return 'page_suggestions';
+	public function get_name() : string{
+		return 'suggestions';
 	}
 }
 
@@ -205,8 +209,8 @@ class AGED_Rated_Controller extends AGED_Page_Controller
 	 	return AGED_Page_Controller::PAGE_RATED;
 	}
 
-	public function get_body_tags() : string{
-		return 'page_rated';
+	public function get_name() : string{
+		return 'rated';
 	}
 	
 }
