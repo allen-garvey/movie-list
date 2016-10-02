@@ -14,6 +14,7 @@ else{
 	$page_controller = new AGED_Index_Controller();	
 }
 
+//required for add movie modal
 $movie_genre_result = AGED_Page_Controller::get_movie_genre_result();
 
 include(VIEWS_PATH.'layout.php');
