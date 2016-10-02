@@ -44,7 +44,7 @@ abstract class AGED_Page_Controller{
 	}
 
 	public function get_title() : string{
-		return "Allen's Movie List";
+		return ucfirst($this->get_name());
 	}
 
 	public function get_sort_variables(){
