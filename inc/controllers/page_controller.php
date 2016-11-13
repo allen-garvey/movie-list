@@ -111,7 +111,7 @@ class AGED_Index_Controller extends AGED_Page_Controller
 	function __construct(){
 		$this->init_controller();
 		$this->default_query_sort_args = 'release,release_date,title';
-		$this->db_query = "SELECT id, title, pre_rating, CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN 'theater_released' ELSE 'unreleased' END END AS RELEASE, CASE WHEN dvd_release <= CURRENT_DATE THEN date '" . Movie_List_Constants::$released_movie_dummy_pg_date."' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days. "' DAY ELSE dvd_release END ELSE theater_release END END AS release_date FROM movies WHERE date_watched IS NULL AND post_rating IS NULL";
+		$this->db_query = "SELECT id, title, pre_rating, CASE WHEN dvd_release <= CURRENT_DATE THEN 'dvd_released' WHEN theater_release <= CURRENT_DATE THEN 'theater_released' ELSE 'unreleased' END AS RELEASE, CASE WHEN dvd_release <= CURRENT_DATE THEN date '" . Movie_List_Constants::$released_movie_dummy_pg_date."' ELSE CASE WHEN theater_release <= CURRENT_DATE THEN CASE WHEN dvd_release IS NULL AND theater_release IS NOT NULL THEN theater_release + INTERVAL '". Movie_List_Constants::$dvd_lead_time_in_days. "' DAY ELSE dvd_release END ELSE theater_release END END AS release_date FROM movies WHERE date_watched IS NULL AND post_rating IS NULL";
 		$this->valid_sort_variables_array = array('title', 'pre_rating', 'release_date', 'release');
 	}
 
