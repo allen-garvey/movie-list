@@ -19,7 +19,7 @@ if($movie_id <= 0){
 
 require_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 
-$movie_query = "SELECT title, theater_release, dvd_release, genre_id as movie_genre, pre_rating, post_rating from movies where id = $1;";
+$movie_query = "SELECT title, theater_release, dvd_release, genre_id as movie_genre, pre_rating, post_rating, active::int from movies where id = $1;";
 
 $db_manager = new AGED_PG_Database_Manager();
 $con = $db_manager->get_database_connection_object();
