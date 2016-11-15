@@ -191,34 +191,35 @@
             return;
         }
         //save movie
-        $.ajax({
-            type: 'POST',
-            url: app.config.MOVIES_API_URL + query_params,
-            data: {'movie' : JSON.stringify(movie), 'method': request_type, 'page_type': app.config.PAGE_TYPE},
-            success: function(data, status){
-                                                if(data['error']){
-                                                    $('#modal_errors').text(data['error']);
-                                                    return;
-                                                }
-                                                $('tbody').html(data['table_body']);
-                                                $('#add_edit_movie_modal').modal('hide');
-                                            }
-        });
+        app.sendUpdateRequest({
+                                url: app.config.MOVIES_API_URL + query_params,
+                                data: {'movie' : JSON.stringify(movie), 'method': request_type}
+                            });
     };
 
     app.updateMovieActivation = function(){
         var updated_active_state = this.movie.active === '1' ? '0' : 1;
         
         //update active state
+        app.sendUpdateRequest({
+                                url: app.config.MOVIES_ACTIVATE_API_URL, 
+                                data: {'movie_id': this.movie.id, 'active': updated_active_state}
+                            });
+    };
+
+    app.sendUpdateRequest = function(options){
+        //set page_type if not set
+        options.data.page_type = options.data.page_type || app.config.PAGE_TYPE;
         $.ajax({
             type: 'POST',
-            url: app.config.MOVIES_ACTIVATE_API_URL,
-            data: {'movie_id': this.movie.id, 'active': updated_active_state, 'page_type': app.config.PAGE_TYPE},
+            url: options.url,
+            data: options.data,
             success: function(data, status){
                                                 if(data['error']){
                                                     $('#modal_errors').text(data['error']);
                                                     return;
                                                 }
+                                                //reload movie table
                                                 $('tbody').html(data['table_body']);
                                                 $('#add_edit_movie_modal').modal('hide');
                                             }
