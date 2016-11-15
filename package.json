@@ -4,7 +4,8 @@
   "description": "CRUD web application to display upcoming movies of interest to the user, recommendations based on if those movies have been released and watched/rated movies.",
   "main": "index.php",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup": "chmod u+x setup.bash && ./setup.bash"
   },
   "repository": {
     "type": "git",
