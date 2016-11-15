@@ -4,5 +4,5 @@
 
 if [ ! -f './inc/db.php' ]; then
 	echo -e "\nInitializing ./inc/db.php\n"; 
-	cp './inc/db-example' './inc/db.php'; 
+	cp './inc/db-example.php' './inc/db.php'; 
 fi
