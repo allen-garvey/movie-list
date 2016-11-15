@@ -25,3 +25,7 @@ define('SCRIPTS_URL', BASE_URL.'scripts/');
 //Application constants
 define('APP_TITLE', 'Movie List');
 
+
+//load database config
+require_once(INC_PATH.'db.php');
+

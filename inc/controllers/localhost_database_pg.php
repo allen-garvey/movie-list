@@ -1,31 +1,31 @@
 <?php
 
 class AGED_PG_Database_Manager{
-	protected function get_database_connection(){
-		return 'localhost';
+	protected function get_database_host(){
+		return DB_HOST;
 	}
 	protected function get_database_username(){
-		return "'Allen X'";
+		return DB_USER;
 	}
 	protected function get_database_password(){
-		return '';
+		return DB_PASSWORD;
 	}
 	protected function get_database_name(){
-		return 'allen_garvey_lists';
+		return DB_NAME;
 	}
 
 	protected function get_database_port(){
-		return '5432';
+		return DB_PORT;
 	}
 
 	public function get_database_connection_object(){
-		$database_connection = $this->get_database_connection();
+		$database_host = $this->get_database_host();
 		$database_username = $this->get_database_username();
 		$database_password = $this->get_database_password();
 		$database_name = $this->get_database_name();
 		$database_port = $this->get_database_port();
 
-		$con = pg_connect("host=$database_connection port=$database_port dbname=$database_name user=$database_username");
+		$con = pg_connect("host=$database_host port=$database_port dbname=$database_name user=$database_username");
 
 		// Check connection
 		if (!$con){
