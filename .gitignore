@@ -11,6 +11,8 @@
 .sass-cache
 .sass-cache/*
 node_modules/*
+#compiled files
 public_html/styles/style.css
+public_html/scripts/app*
 #secrets
 db.php
