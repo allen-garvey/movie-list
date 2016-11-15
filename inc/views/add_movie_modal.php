@@ -42,6 +42,10 @@
 						<button type="submit" class="btn btn-primary">Save</button>
 					</div>
 				</form>
+				<form class='hide-for-add' id='activate_form'>
+					<input type="submit" value="Activate" class="btn btn-default" id="activate_active_submit" />
+					<input type="submit" value="Deactivate" class="btn btn-danger" id="activate_deactive_submit" />
+				</form>
 			</div>
 		</div>
 	</div>

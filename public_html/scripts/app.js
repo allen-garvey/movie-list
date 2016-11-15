@@ -85,6 +85,14 @@
     };
     app.resetForEdit = function(movie){
     	$('#add_edit_movie_modal').addClass('edit').removeClass('add');
+        if(movie.active === '1'){
+            $('#activate_active_submit').hide();
+            $('#activate_deactive_submit').show();
+        }
+        else{
+            $('#activate_active_submit').show();
+            $('#activate_deactive_submit').hide();
+        }
     	this.mode = 'edit';
 
     	$.each(this.movieFields(), function(index, el) {
@@ -136,7 +144,8 @@
 					'post_rating' : self.formatRating(data['movie']['post_rating']),
 					'theater_release' : data['movie']['theater_release'],
 					'dvd_release' : data['movie']['dvd_release'],
-					'movie_genre' : parseInt(data['movie']['movie_genre'])
+					'movie_genre' : parseInt(data['movie']['movie_genre']),
+                    'active' : data['movie']['active']
 				};
 				self.showModal(self.movie);
 			}
@@ -197,6 +206,25 @@
         });
     };
 
+    app.updateMovieActivation = function(){
+        var updated_active_state = this.movie.active === '1' ? '0' : 1;
+        
+        //update active state
+        $.ajax({
+            type: 'POST',
+            url: app.config.MOVIES_ACTIVATE_API_URL,
+            data: {'movie_id': this.movie.id, 'active': updated_active_state, 'page_type': app.config.PAGE_TYPE},
+            success: function(data, status){
+                                                if(data['error']){
+                                                    $('#modal_errors').text(data['error']);
+                                                    return;
+                                                }
+                                                $('tbody').html(data['table_body']);
+                                                $('#add_edit_movie_modal').modal('hide');
+                                            }
+        });
+    };
+
 	/*
 	* add listeners
 	*/
@@ -214,6 +242,10 @@
 		event.preventDefault();
 		app.saveMovie();
 	});
+    $('#activate_form').on('submit', function(event) {
+        event.preventDefault();
+        app.updateMovieActivation();
+    });
 	//trigger validation when form is reset
 	app.triggerValidators = function(){
 		$.each(app.movieFields(), function(index, el){
