@@ -85,6 +85,7 @@
     };
     app.resetForEdit = function(movie){
     	$('#add_edit_movie_modal').addClass('edit').removeClass('add');
+        //show correct activate button
         if(movie.active === '1'){
             $('#activate_active_submit').hide();
             $('#activate_deactive_submit').show();
