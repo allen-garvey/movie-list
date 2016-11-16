@@ -3,11 +3,12 @@ require_once('../inc/config.php');
 require_once(CONTROLLERS_PATH.'page_controller.php');
 
 //routing
-$path = array_key_exists('path', $_GET) ? $_GET['path'] : '';
-if(preg_match('/^suggestions/', $path)){
+$request_path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+if(preg_match('#^/suggestions#', $request_path)){
 	$page_controller = new AGED_Suggestions_Controller();
 }
-else if(preg_match('/^rated/', $path)){
+else if(preg_match('#^/rated#', $request_path)){
 	$page_controller = new AGED_Rated_Controller();
 }
 else{
