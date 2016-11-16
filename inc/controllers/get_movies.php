@@ -1,6 +1,5 @@
 <?php 
 //get info about movie for editing purposes
-require_once('../../inc/config.php');
 
 if(!isset($_GET['id'])){
 	http_response_code(400);

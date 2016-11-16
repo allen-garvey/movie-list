@@ -1,5 +1,4 @@
 <?php 
-require_once('../../inc/config.php');
 
 if(!isset($_POST['movie_id'])) {
 	http_response_code(400);

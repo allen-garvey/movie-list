@@ -1,5 +1,4 @@
 <?php 
-require_once('../../inc/config.php');
 
 if( !isset($_POST['movie']) || is_null(json_decode($_POST['movie'], true)) ) {
 	http_response_code(400);
