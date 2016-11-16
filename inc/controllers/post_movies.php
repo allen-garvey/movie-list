@@ -11,8 +11,6 @@ require_once(INC_PATH . 'constants.php');
 require_once(CONTROLLERS_PATH.'movie_data_validator.php');
 require_once(CONTROLLERS_PATH.'localhost_database_pg.php');
 
-header('Content-Type: application/json');
-
 $request_type = 'add';
 if(isset($_POST['method']) && $_POST['method'] === 'PATCH'){
 	$request_type = 'update';

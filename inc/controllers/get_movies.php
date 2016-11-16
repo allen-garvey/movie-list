@@ -2,8 +2,6 @@
 //get info about movie for editing purposes
 require_once('../../inc/config.php');
 
-header('Content-Type: application/json');
-
 if(!isset($_GET['id'])){
 	http_response_code(400);
 	echo json_encode(['error' => 'You have not sent a movie id']);
