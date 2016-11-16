@@ -1,3 +1,7 @@
 RewriteEngine on
-RewriteRule ^(suggestions.*)$ /index.php?path=$1 [NC,L,QSA]
-RewriteRule ^(rated.*)$ /index.php?path=$1 [NC,L,QSA]
+
+#redirect all missing files to index.php
+#based on: http://stackoverflow.com/questions/18406156/redirect-all-to-index-php-htaccess
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /index.php [NC,L,QSA]
