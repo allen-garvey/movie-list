@@ -1,0 +1,4 @@
+//fixes for jquery ui datepicker
+tbody tr td:first-child::before{
+	content: '';
+}
