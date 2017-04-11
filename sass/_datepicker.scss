@@ -2,3 +2,7 @@
 tbody tr td:first-child::before{
 	content: '';
 }
+
+.ui-datepicker-prev, .ui-datepicker-next{
+	border: 1px solid #999;
+}
