@@ -9,7 +9,7 @@ define('VIEWS_PATH', INC_PATH.'views/');
 define('CONTROLLERS_PATH', INC_PATH.'controllers/');
 
 define('SUBDOMAIN', 'movies');
-
+define('BASE_URL', '/');
 require_once(INC_PATH.'multisite-config.php');
 
 //Url Constants
