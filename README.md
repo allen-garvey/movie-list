@@ -16,9 +16,8 @@ Web application to keep track of when the movies you want to watch are released.
 
 * `cd` into downloaded project directory
 * Type `npm install` to install dependencies
-* If you do not have Gulp installed type `npm install gulp -g` or `sudo npm install gulp -g` to install gulp globally to enable the `gulp` command
-* Type `gulp build` to compile scss files
-* Type `gulp watch` to watch for changes in scss files and build as necessary during development
+* Type `npm run gulp` to compile scss files
+* Type `npm run gulp:watch` to watch for changes in scss files and build as necessary during development
 * Type `npm run setup` to initialize `./inc/db.php` which you should edit with database connection settings (requires bash and POSIX compatible operating system)
 
 ## License
